@@ -19,6 +19,11 @@ with open(f"setting.json", "r", encoding="UTF-8") as f:
 class cogManagerCog(commands.Cog):
     def __init__(self, bot):  # コンストラクタ
         self.bot = bot
+        self.switchFlag = False
+        global settings
+        with open(f"setting.json", "r", encoding="UTF-8") as f:
+            settings = json.load(f)
+        print("Cog cogmanager.py init!")
 
     def getCogs(self):
         self.GLOBAL_INITIAL_EXTENSIONS = os.listdir("cogs")
@@ -34,13 +39,12 @@ class cogManagerCog(commands.Cog):
     @app_commands.command(name=settings["commands"]["reload"]["command"], description=settings["commands"]["reload"]["description"])
     @app_commands.default_permissions(administrator=True)
     async def reload(self, interaction: discord.Interaction):
-        await interaction.response.defer()
         self.getCogs()
         for cog in self.GLOBAL_INITIAL_EXTENSIONS:
             print("loading cogs...", "cogs."+cog[:-3])
             await self.bot.reload_extension("cogs."+cog[:-3])
         guild = discord.Object(int(settings["general"]["GuildID"]))
-        await interaction.followup.send("コグを再読み込みしました", ephemeral=True)
+        await interaction.response.send_message("コグを再読み込みしました", ephemeral=True)
         await self.bot.tree.sync(guild=guild)
         await self.bot.tree.sync()
 

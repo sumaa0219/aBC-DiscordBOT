@@ -9,15 +9,19 @@ import datetime
 import random
 import string
 
-with open(f"setting.json", "r", encoding="UTF-8") as f:
-    settings = json.load(f)
 
 transactionIDNum = 10
+with open(f"setting.json", "r", encoding="UTF-8") as f:
+    settings = json.load(f)
 
 
 class tokenCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        global settings
+        with open(f"setting.json", "r", encoding="UTF-8") as f:
+            settings = json.load(f)
+        print("Cog token.py init!")
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -27,7 +31,7 @@ class tokenCog(commands.Cog):
     async def show(self, interaction: discord.Interaction):
         user = db.readDB("user", str(interaction.user.id))
         token = user["token"]
-        await interaction.response.send_message(f"あなたのトークン残高は{token}トークンです", ephemeral=True)
+        await interaction.response.send_message(f"あなたのトークン残高は{token:,}トークンです", ephemeral=True)
 
     @app_commands.command(name=settings["commands"]["send"]["command"], description=settings["commands"]["send"]["description"])
     async def send(self, interaction: discord.Interaction, user: discord.User, amount: int, discription: str):
@@ -98,9 +102,7 @@ class tokenCog(commands.Cog):
                 "lastinChannelID": 0
             },
             "profile": {
-                "name": None,
-                "affiliation": None,
-                "selfIntroduction": None
+                "done": False,
             },
             "login": {
                 "day": None,
@@ -125,7 +127,8 @@ class tokenCog(commands.Cog):
         # 送金処理(送られた側)
         targetInfo = db.readDB("user", str(toUser.id))
         targetInfo["token"] = targetInfo["token"] + amount
-        db.writeDB("user", str(fromUser.id), targetInfo)
+        db.writeDB("user", str(toUser.id), targetInfo)
+        print(targetInfo)
 
         if fromUser.id == settings["general"]["botClientID"]:
             isBOT = True
@@ -149,11 +152,20 @@ class tokenCog(commands.Cog):
 
         # 送金履歴の送信
         if isBOT:
-            await self.bot.get_guild(int(settings["general"]["GuildID"])).get_channel(int(
-                settings["channel"]["token"])).send(f"取引番号:``{transactionID}``\n**{toUser.display_name}**さんに運営から{amount}トークンを付与されました\n説明:{discription}")
+            embed = discord.Embed(
+                title=f"取引番号:``{transactionID}``",
+                description=f"from **運営** to **{toUser.mention}**",
+                color=0x00ff00
+            )
         else:
-            await self.bot.get_guild(int(settings["general"]["GuildID"])).get_channel(int(
-                settings["channel"]["token"])).send(f"取引番号:``{transactionID}``\n**{toUser.display_name}**さんに{fromUser.display_name}さんから{amount}トークンを付与されました\n説明:{discription}")
+            embed = discord.Embed(
+                title=f"取引番号:``{transactionID}``",
+                description=f"from **{fromUser.mention}** to **{toUser.mention}**",
+                color=0x00ff00
+            )
+        embed.add_field(name=f"{amount:,}トークン", value=f"メッセージ:{discription}")
+        await self.bot.get_guild(int(settings["general"]["GuildID"])).get_channel(int(
+            settings["channel"]["token"])).send(embed=embed)
 
     # @commands.Cog.listener()
     # async def on_message(self, message):

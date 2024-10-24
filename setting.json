@@ -6,13 +6,45 @@
         "tipwaveBotClientID": 1069358623484039209
     },
     "channel": {
-        "welcome": 1298147892485427260,
-        "token": 1298169269535637595
+        "welcome": 1270650390303473717,
+        "token": 1298169269535637595,
+        "selfintroduction": 1270650785499320352,
+        "reject": 1299052533280673833
     },
     "role": {
         "admin": 1270652576781566024,
         "individualMember": 1298150545164468224,
         "listenOnly": 1298150049687142420
+    },
+    "selfintroduction": {
+        "1": {
+            "content": "呼ばれたいニックネーム",
+            "min": 1
+        },
+        "2": {
+            "content": "所属",
+            "min": 1
+        },
+        "3": {
+            "content": "貢献できること",
+            "min": 1
+        },
+        "4": {
+            "content": "具体的に、誰かとやりたいこと",
+            "min": 1
+        },
+        "5": {
+            "content": "1ヶ月で関われそうな時間",
+            "min": 1
+        },
+        "6": {
+            "content": "好きなこと、興味があること",
+            "min": 1
+        },
+        "7": {
+            "content": "ひとこと",
+            "min": 5
+        }
     },
     "token": {
         "join": {
@@ -25,7 +57,7 @@
         },
         "selfintroduction": {
             "token": 500,
-            "description": "自己紹介トークン"
+            "description": "自己紹介ありがとうございました！"
         },
         "loginWeek": {
             "token": 10,
@@ -68,6 +100,10 @@
         "tipwavesend": {
             "command": "tipwavesend",
             "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**"
+        },
+        "tipwaveshow": {
+            "command": "tipwaveshow",
+            "description": "トークンの残高を表示します  :exclamation: **管理者専用**"
         }
     }
 }
