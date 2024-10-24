@@ -1,0 +1,73 @@
+{
+    "general": {
+        "name": "aBC DAO",
+        "GuildID": 1270650390303473714,
+        "botClientID": 1298190542881947670,
+        "tipwaveBotClientID": 1069358623484039209
+    },
+    "channel": {
+        "welcome": 1298147892485427260,
+        "token": 1298169269535637595
+    },
+    "role": {
+        "admin": 1270652576781566024,
+        "individualMember": 1298150545164468224,
+        "listenOnly": 1298150049687142420
+    },
+    "token": {
+        "join": {
+            "token": 1000,
+            "description": "サーバー参加歓迎トークン"
+        },
+        "invited": {
+            "token": 500,
+            "description": "招待感謝トークン"
+        },
+        "selfintroduction": {
+            "token": 500,
+            "description": "自己紹介トークン"
+        },
+        "loginWeek": {
+            "token": 10,
+            "description": "平日ログインボーナストークン"
+        },
+        "loginWeekend": {
+            "token": 50,
+            "description": "週末ログインボーナストークン"
+        },
+        "loginMonthly": {
+            "token": 1000,
+            "description": "月間ログインボーナストークン"
+        },
+        "loginWeekly": {
+            "token": 500,
+            "description": "年間ログインボーナストークン"
+        }
+    },
+    "commands": {
+        "help": {
+            "command": "help",
+            "description": "コマンド一覧を表示します"
+        },
+        "show": {
+            "command": "show",
+            "description": "トークンの残高を表示します"
+        },
+        "send": {
+            "command": "send",
+            "description": "トークンをメンションしたユーザーに送付します"
+        },
+        "adminsend": {
+            "command": "adminsend",
+            "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**"
+        },
+        "reload": {
+            "command": "reload",
+            "description": "コグをホットリロードします  :exclamation: **管理者専用**"
+        },
+        "tipwavesend": {
+            "command": "tipwavesend",
+            "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**"
+        }
+    }
+}
