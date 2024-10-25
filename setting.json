@@ -53,7 +53,7 @@
         },
         "invited": {
             "token": 500,
-            "description": "招待感謝トークン"
+            "description": "友達招待ありがとうございました！"
         },
         "selfintroduction": {
             "token": 500,

@@ -61,7 +61,7 @@ class selfintroductionCog(commands.Cog):
                 await message.channel.send(f"{message.author.mention}さん、自己紹介ありがとうございます！！", delete_after=20)
                 await message.author.remove_roles(discord.Object(int(settings["role"]["listenOnly"])))
                 await message.author.add_roles(discord.Object(int(settings["role"]["individualMember"])))
-                await message.add_reaction(":white_check_mark:")
+                await message.add_reaction("✅")
                 userInfo["profile"]["done"] = True
                 db.writeDB("user", str(message.author.id), userInfo)
                 await token.tokenCog(self.bot).giveToken(self.bot.user, message.author, settings["token"]["selfintroduction"]["token"], settings["token"]["selfintroduction"]["description"])
