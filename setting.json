@@ -14,7 +14,8 @@
     "role": {
         "admin": 1270652576781566024,
         "individualMember": 1298150545164468224,
-        "listenOnly": 1298150049687142420
+        "listenOnly": 1298150049687142420,
+        "manager": 1298642841764888718
     },
     "selfintroduction": {
         "1": {
@@ -61,19 +62,19 @@
         },
         "loginWeek": {
             "token": 10,
-            "description": "平日ログインボーナストークン"
+            "description": "平日ログインボーナス"
         },
         "loginWeekend": {
             "token": 50,
-            "description": "週末ログインボーナストークン"
+            "description": "週末ログインボーナス"
         },
         "loginMonthly": {
             "token": 1000,
-            "description": "月間ログインボーナストークン"
+            "description": "月間ログインボーナス"
         },
         "loginWeekly": {
             "token": 500,
-            "description": "年間ログインボーナストークン"
+            "description": "年間ログインボーナス"
         }
     },
     "commands": {
@@ -101,9 +102,31 @@
             "command": "tipwavesend",
             "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**"
         },
-        "tipwaveshow": {
-            "command": "tipwaveshow",
-            "description": "トークンの残高を表示します  :exclamation: **管理者専用**"
+        "resistmail": {
+            "command": "resistmail",
+            "description": "通知するメールアドレスを登録/変更します :exclamation: **運営専用**"
+        },
+        "switchmail": {
+            "command": "switchmail",
+            "description": "メールアドレスへの転送の有無を切り替えます :exclamation: **運営専用**"
+        }
+    },
+    "notification": {
+        "1283989394298114130": {
+            "discord": 1283989394298114130,
+            "webhookURL": "https://hooks.slack.com/services/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"
+        },
+        "1283989671998914600": {
+            "discord": 1283989671998914600,
+            "webhookURL": "https://hooks.slack.com/services/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"
+        },
+        "1283989596039938241": {
+            "discord": 1283989596039938241,
+            "webhookURL": "https://hooks.slack.com/services/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"
+        },
+        "1277811019611115530": {
+            "discord": 1277811019611115530,
+            "webhookURL": "https://hooks.slack.com/services/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"
         }
     }
 }

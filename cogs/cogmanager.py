@@ -2,18 +2,17 @@ from discord.ext import commands
 from discord import app_commands
 import discord
 import os
-from dotenv import load_dotenv
 import json
 
-load_dotenv()
 
-# このファイルは読み込まない
-# removeCogs = ["tipwave.py", "__pycache__"]
+# 読み込まないコグのリスト
 removeCogs = ["__pycache__"]
 
-
+# 設定ファイルの読み込み
 with open(f"setting.json", "r", encoding="UTF-8") as f:
     settings = json.load(f)
+
+# cogManagerCogクラスの定義
 
 
 class cogManagerCog(commands.Cog):
@@ -21,21 +20,25 @@ class cogManagerCog(commands.Cog):
         self.bot = bot
         self.switchFlag = False
         global settings
+        # 設定ファイルの再読み込み
         with open(f"setting.json", "r", encoding="UTF-8") as f:
             settings = json.load(f)
         print("Cog cogmanager.py init!")
 
+    # コグのリストを取得する関数
     def getCogs(self):
         self.GLOBAL_INITIAL_EXTENSIONS = os.listdir("cogs")
         for cog in removeCogs:
             if cog in self.GLOBAL_INITIAL_EXTENSIONS:
                 self.GLOBAL_INITIAL_EXTENSIONS.remove(cog)
 
+    # Botが準備完了したときに呼ばれるイベントリスナー
     @commands.Cog.listener()
     async def on_ready(self):
         print("Cog cogmanage.py ready!")
         await self.load_all_extentions()
 
+    # コグを再読み込みするコマンド
     @app_commands.command(name=settings["commands"]["reload"]["command"], description=settings["commands"]["reload"]["description"])
     @app_commands.default_permissions(administrator=True)
     async def reload(self, interaction: discord.Interaction):
@@ -48,6 +51,7 @@ class cogManagerCog(commands.Cog):
         await self.bot.tree.sync(guild=guild)
         await self.bot.tree.sync()
 
+    # ヘルプコマンド
     @app_commands.command(name=settings["commands"]["help"]["command"], description=settings["commands"]["help"]["description"])
     async def help(self, interaction: discord.Interaction):
         await interaction.response.defer()
@@ -58,6 +62,7 @@ class cogManagerCog(commands.Cog):
                             value=settings["commands"][command]["description"], inline=False)
         await interaction.followup.send(embed=embed)
 
+    # 全てのコグを読み込む関数
     async def load_all_extentions(self):
         print("loading all cogs...")
         self.getCogs()
@@ -70,6 +75,8 @@ class cogManagerCog(commands.Cog):
         await self.bot.tree.sync(guild=guild)
         # 全てのギルドに対してコマンドを反映(時間かかる)
         await self.bot.tree.sync()
+
+# Cogをセットアップする関数
 
 
 async def setup(bot):
