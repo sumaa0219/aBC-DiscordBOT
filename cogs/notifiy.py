@@ -25,7 +25,7 @@ class notifiyCog(commands.Cog):
         # 設定ファイルの再読み込み
         with open(f"setting.json", "r", encoding="UTF-8") as f:
             settings = json.load(f)
-        print("Cog invite.py init!")
+        print("Cog notifiy.py init!")
 
     # 特定のロールを持っているユーザーにメッセージを転送するコマンド
     @app_commands.command(name=settings["commands"]["resistmail"]["command"], description=settings["commands"]["resistmail"]["description"])
@@ -63,10 +63,13 @@ class notifiyCog(commands.Cog):
                 "@everyone", "<!channel>").replace("@here", "<!here>")
             notifiyMessage = f"*Discordからの転送*\n{message.author.display_name}さん\n\n\n{message.content}\n\n\n{message.jump_url}"
             self.sendNotifiySlack(message.channel.id, notifiyMessage)
-
+            print("send slack")
             for mailAdress in db.readDB("notifiemail").values():
+                print(mailAdress)
                 if mailAdress["active"]:
-                    self.sendNotifiyEmail(notifiyMessage, mailAdress["email"])
+                    print("send mail")
+                    self.sendNotifiyEmail(
+                        notifiyMessage, mailAdress["email"])
 
             return
 

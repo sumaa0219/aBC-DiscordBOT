@@ -9,7 +9,9 @@
         "welcome": 1270650390303473717,
         "token": 1298169269535637595,
         "selfintroduction": 1270650785499320352,
-        "reject": 1299052533280673833
+        "reject": 1299052533280673833,
+        "adminConsole": 1298147892485427260,
+        "bigroom": 1283990012735520859
     },
     "role": {
         "admin": 1270652576781566024,
@@ -60,7 +62,7 @@
             "token": 500,
             "description": "自己紹介ありがとうございました！"
         },
-        "loginWeek": {
+        "loginWeekday": {
             "token": 10,
             "description": "平日ログインボーナス"
         },
@@ -74,6 +76,10 @@
         },
         "loginWeekly": {
             "token": 500,
+            "description": "週間ログインボーナス"
+        },
+        "loginYearly": {
+            "token": 10000,
             "description": "年間ログインボーナス"
         }
     },
@@ -109,24 +115,51 @@
         "switchmail": {
             "command": "switchmail",
             "description": "メールアドレスへの転送の有無を切り替えます :exclamation: **運営専用**"
+        },
+        "showalltoken": {
+            "command": "showall",
+            "description": "全ユーザーのトークン残高を多い順に表示します  :exclamation: **管理者専用**"
+        },
+        "login": {
+            "command": "login",
+            "description": "ログインボーナスを受け取れます"
         }
     },
     "notification": {
         "1283989394298114130": {
             "discord": 1283989394298114130,
-            "webhookURL": "https://hooks.slack.com/services/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"
+            "webhookURL": "https://hooks.slack.com/services/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"
         },
         "1283989671998914600": {
             "discord": 1283989671998914600,
-            "webhookURL": "https://hooks.slack.com/services/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"
+            "webhookURL": "https://hooks.slack.com/services/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"
         },
         "1283989596039938241": {
             "discord": 1283989596039938241,
-            "webhookURL": "https://hooks.slack.com/services/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"
+            "webhookURL": "https://hooks.slack.com/services/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"
         },
         "1277811019611115530": {
             "discord": 1277811019611115530,
-            "webhookURL": "https://hooks.slack.com/services/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"
+            "webhookURL": "https://hooks.slack.com/services/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"
+        }
+    },
+    "agenda": {
+        "1": {
+            "content": "プロジェクトエントリー",
+            "min": 1
+        },
+        "2": {
+            "content": "タイトル",
+            "min": 1
+        },
+        "3": {
+            "content": "希望チャンネル名",
+            "min": 1
+        },
+        "4": {
+            "content": "説明",
+            "max": 410,
+            "min": 100
         }
     }
 }

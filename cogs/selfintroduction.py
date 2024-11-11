@@ -54,19 +54,24 @@ class selfintroductionCog(commands.Cog):
                 index)]["content"] for index in settings["selfintroduction"].keys()]
             originalMessage = message.content
             selfintroduction = message.content.split("\n")
+            selfintroduction = [
+                item for item in selfintroduction if item != ""]
             missingItems = {}
             # 必須項目のチェック
+            for items in mustItems:
+                for item in selfintroduction:
+                    targetItem = item.split(":")
+                    if items in targetItem[0]:
+                        userInfo["profile"][f"{items}"] = targetItem[1]
             for i, items in enumerate(mustItems):
                 try:
-                    item = selfintroduction[i].split(":")
-                    if item[0] != items:
-                        missingItems[f"{i+1}1"] = f"項目名**「{items}」**が見つかりませんでした"
-                    elif len(item[1]) < settings["selfintroduction"][f"{i+1}"]["min"]:
-                        min = settings["selfintroduction"][f"{i+1}"]["min"]
-                        missingItems[f"{i+1}2"] = f"項目名**「{items}」**は{min}文字以上で入力してください"
-                    else:
-                        userInfo["profile"][f"{items}"] = item[1]
-                except IndexError:
+                    if userInfo["profile"][f"{items}"]:
+                        if len(userInfo["profile"][f"{items}"]) <= int(settings["selfintroduction"][f"{i+1}"]["min"]):
+                            min = settings["selfintroduction"][f"{i+1}"]["min"]
+                            missingItems[f"{i+1}2"] = f"項目名**「{items}」**は{min}文字以上で入力してください"
+
+                except KeyError:
+                    print("keyerror", items)
                     missingItems[f"{i+1}1"] = f"項目名**「{items}」**が見つかりませんでした"
 
             # 必須項目がすべて揃っている場合
@@ -75,6 +80,7 @@ class selfintroductionCog(commands.Cog):
                 await message.author.remove_roles(discord.Object(int(settings["role"]["listenOnly"])))
                 await message.author.add_roles(discord.Object(int(settings["role"]["individualMember"])))
                 await message.add_reaction("✅")
+                userInfo["profile"]["messageID"] = message.id
                 userInfo["profile"]["done"] = True
                 db.writeDB("user", str(message.author.id), userInfo)
                 await token.tokenCog(self.bot).giveToken(self.bot.user, message.author, settings["token"]["selfintroduction"]["token"], settings["token"]["selfintroduction"]["description"])
@@ -84,6 +90,7 @@ class selfintroductionCog(commands.Cog):
                 embed = discord.Embed(
                     title="以下を修正してください", description="修正して再度投稿してください", color=0xff0000)
                 for key in missingItems.keys():
+                    print(key)
                     item = settings["selfintroduction"][f"{key[:1]}"]["content"]
                     embed.add_field(
                         name=f"{item}", value=missingItems[key], inline=False)

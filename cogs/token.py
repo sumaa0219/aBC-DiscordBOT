@@ -61,7 +61,21 @@ class tokenCog(commands.Cog):
         await self.giveToken(self.bot.user, user, amount, "管理者からのトークン付与")
         await interaction.response.send_message(f"{user.mention}さんに{amount}トークンを付与しました")
 
+    @app_commands.command(name=settings["commands"]["showalltoken"]["command"], description=settings["commands"]["showalltoken"]["description"])
+    @app_commands.default_permissions(administrator=True)
+    async def showalltoken(self, interaction: discord.Interaction):
+        userInfos = db.readDB("user")
+        tokenList = []
+        for userID in userInfos.keys():
+            userInfo = userInfos[userID]
+            tokenList.append(
+                {"name": userInfo["userDisplayName"], "token": userInfo["token"]})
+        tokenList = sorted(tokenList, key=lambda x: x["token"], reverse=True)
+        ranking = self.format_ranking(tokenList)
+        await interaction.response.send_message(content=ranking)
+
     # サーバー参加時に呼ばれるイベントリスナー
+
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
         if db.readDB("user", str(member.id)):
@@ -116,17 +130,33 @@ class tokenCog(commands.Cog):
                 "day": None,
                 "weekly": None,
                 "monthly": None,
+                "yearly": None,
+                "total": 0
             },
             "vote": {
                 "count": 3,
                 "voteList": None
             },
             "agenda": {
-                "idList": None,
+                "idList": [],
             }
 
         }
         return userInfomation
+
+    def format_ranking(self, users):
+        # 最大の名前の長さを取得
+        max_name_length = max(len(user['name']) for user in users)
+
+        ranking = ""
+        for i, user in enumerate(users):
+            # 名前の長さに応じて空白を追加
+            name = user['name']
+            token = f"{user['token']:,}トークン"
+            spaces = ' ' * (max_name_length - len(name) + 10)  # 5はタブの代わりのスペース数
+            ranking += f"{i+1}位 {name}{spaces}{token}\n"
+
+        return ranking
 
     # トークンを送信する関数
     async def giveToken(self, fromUser: discord.Member, toUser: discord.Member, amount: int, discription: str):
