@@ -26,6 +26,7 @@ class bigroomCog(commands.Cog):
         print("Cog bigroom.py init!")
 
     # メッセージが送信されたときに呼ばれるイベントリスナー
+
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         # 自己紹介チャンネル以外では処理を行わない
@@ -40,13 +41,13 @@ class bigroomCog(commands.Cog):
                     pass
                 return
             # Botのメッセージは削除
-            if message.author.bot and "アジェンダID" not in message.content:
+            if message.author.bot and "アジェンダID" not in message.content and "アナウンス" not in message.content:
                 try:
                     await message.delete()
                 except:
                     pass
                 return
-            elif message.author.bot and "アジェンダID" in message.content:
+            elif message.author.bot and "アジェンダID" in message.content and "アナウンス" in message.content:
                 return
             else:
 
@@ -82,6 +83,7 @@ class bigroomCog(commands.Cog):
                 if errormessage != "":
                     await message.guild.get_channel(int(settings["channel"]["reject"])).send(f"アジェンダID{message.author.mention}さん、以下のエラーがあります。\n{errormessage}\n{originalMessage}")
                     await message.delete()
+                # アジェンダ承認された場合
                 else:
                     agendaID = ''.join(random.choices(
                         string.ascii_letters + string.digits, k=agendaIDNum))
@@ -103,13 +105,24 @@ class bigroomCog(commands.Cog):
                     if userInfo["agenda"]["idList"] == None:
                         userInfo["agenda"]["idList"] = [agendaID]
                     else:
-                        userInfo["agenda"]["idList"].append(agendaID)
+                        list(userInfo["agenda"]["idList"]).append(agendaID)
                     db.writeDB("user", str(message.author.id), userInfo)
 
                     await message.reply(f"アジェンダID: {agendaID}")
                     await message.add_reaction("✅")
 
+                    createdChannel = await self.createChannel(message.guild, channelName[1], content[1])
+                    await createdChannel.send(f"アジェンダID: {agendaID}")
+                    await createdChannel.send(f"アジェンダオーナー: {message.author.mention}")
 
+    async def createChannel(self, guild: discord.Guild, channelName: str, topic: str):
+        category = guild.get_channel(int(settings["category"]["smallroom"]))
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(
+                read_messages=True, send_messages=True)
+        }
+        channel = await category.create_text_channel(channelName, overwrites=overwrites, topic=topic)
+        return channel
 # Cogをセットアップする関数
 
 

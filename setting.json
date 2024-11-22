@@ -11,7 +11,12 @@
         "selfintroduction": 1270650785499320352,
         "reject": 1299052533280673833,
         "adminConsole": 1298147892485427260,
-        "bigroom": 1283990012735520859
+        "bigroom": 1283990012735520859,
+        "announcement": 1308023153112649759,
+        "login": 1308586120308723782
+    },
+    "category": {
+        "smallroom": 1271333937804873770
     },
     "role": {
         "admin": 1270652576781566024,
@@ -140,7 +145,7 @@
         },
         "1277811019611115530": {
             "discord": 1277811019611115530,
-            "webhookURL": "https://hooks.slack.com/services/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"
+            "webhookURL": "https://hooks.slack.com/services/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"
         }
     },
     "agenda": {
@@ -157,6 +162,17 @@
             "min": 1
         },
         "4": {
+            "content": "説明",
+            "max": 410,
+            "min": 100
+        }
+    },
+    "announcement": {
+        "justbefore": {
+            "message": "明日で今月のアジェンダの応募を締め切ります。明日以降は来月分となりますのでご注意ください。",
+            "day": 24
+        },
+        "2": {
             "content": "説明",
             "max": 410,
             "min": 100

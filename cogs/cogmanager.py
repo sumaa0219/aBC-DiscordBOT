@@ -67,6 +67,7 @@ class cogManagerCog(commands.Cog):
         print("loading all cogs...")
         self.getCogs()
         self.GLOBAL_INITIAL_EXTENSIONS.remove("cogmanager.py")
+        self.GLOBAL_INITIAL_EXTENSIONS.remove("login.py")
         for cog in self.GLOBAL_INITIAL_EXTENSIONS:
             print("loading cogs...", cog[:-3])
             await self.bot.load_extension("cogs."+cog[:-3])
