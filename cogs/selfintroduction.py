@@ -82,6 +82,7 @@ class selfintroductionCog(commands.Cog):
                 await message.add_reaction("✅")
                 userInfo["profile"]["messageID"] = message.id
                 userInfo["profile"]["done"] = True
+                userInfo["profile"]["original"] = originalMessage
                 db.writeDB("user", str(message.author.id), userInfo)
                 await token.tokenCog(self.bot).giveToken(self.bot.user, message.author, settings["token"]["selfintroduction"]["token"], settings["token"]["selfintroduction"]["description"])
             else:

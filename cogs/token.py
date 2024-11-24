@@ -118,6 +118,7 @@ class tokenCog(commands.Cog):
             "userDisplayName": member.display_name,
             "userDisplayIcon": str(member.display_avatar.url),
             "token": hasToken,
+            "userHighestRole": member.guild.get_role(int(member.roles[-1].id)).name,
             "vc": {
                 "lastinTime": None,
                 "lastoutTime": None,

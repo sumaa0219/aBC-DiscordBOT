@@ -11,9 +11,11 @@ with open(f"setting.json", "r", encoding="UTF-8") as f:
 JST = timezone(timedelta(hours=+9), "JST")
 
 # 時刻をリストで設定
-nameChangeTimes = [
+updateTimes = [
     time(hour=0, tzinfo=JST),
+    time(hour=6, tzinfo=JST),
     time(hour=12, tzinfo=JST),
+    time(hour=18, tzinfo=JST)
 ]
 voteTimes = [
     time(hour=0, tzinfo=JST),
@@ -31,7 +33,7 @@ class taskCog(commands.Cog):
         global settings
         with open(f"setting.json", "r", encoding="UTF-8") as f:
             settings = json.load(f)
-        self.nameChangeTask.start()
+        self.updateTask.start()
         self.voteTask.start()
         print("Cog task.py init!")
 
@@ -50,22 +52,32 @@ class taskCog(commands.Cog):
                 int(settings["channel"]["announcement"])).send(announceMessage)
             return
 
-    @tasks.loop(time=nameChangeTimes, reconnect=True)
-    async def nameChangeTask(self):
+    @tasks.loop(time=updateTimes, reconnect=True)
+    async def updateTask(self):
         print("nameChangeTask")
         userInfos = db.readDB("user")
         for userInfo in userInfos:
+            changeFlag = 0
             user = self.bot.get_guild(
                 int(settings["general"]["GuildID"])).get_member(int(userInfo))
             displayName = user.display_name
             displayAvatarURL = user.display_avatar.url
+            roleName = self.bot.get_guild(
+                int(settings["general"]["GuildID"])).get_role(int(user.roles[-1].id)).name
             if str(userInfos[userInfo]["userID"]) != str(user.id):
                 userInfos[userInfo]["userID"] = str(user.id)
+                changeFlag += 1
             if userInfos[userInfo]["userDisplayName"] != displayName:
                 userInfos[userInfo]["userDisplayName"] = displayName
+                changeFlag += 1
             if userInfos[userInfo]["userDisplayIcon"] != displayAvatarURL:
                 userInfos[userInfo]["userDisplayIcon"] = displayAvatarURL
-            db.writeDB("user", userInfo, userInfos[userInfo])
+                changeFlag += 1
+            if userInfos[userInfo]["userHighestRole"] != roleName:
+                userInfos[userInfo]["userHighestRole"] = roleName
+                changeFlag += 1
+            if changeFlag != 0:
+                db.writeDB("user", userInfo, userInfos[userInfo])
 
 
 async def setup(bot: commands.Bot):
