@@ -3,6 +3,8 @@ from discord import app_commands
 import discord
 import os
 import json
+from scr.database import readDB
+from decimal import Decimal
 
 
 # 読み込まないコグのリスト
@@ -19,6 +21,7 @@ class cogManagerCog(commands.Cog):
     def __init__(self, bot):  # コンストラクタ
         self.bot = bot
         self.switchFlag = False
+        self.getSettings()
         global settings
         # 設定ファイルの再読み込み
         with open(f"setting.json", "r", encoding="UTF-8") as f:
@@ -32,7 +35,21 @@ class cogManagerCog(commands.Cog):
             if cog in self.GLOBAL_INITIAL_EXTENSIONS:
                 self.GLOBAL_INITIAL_EXTENSIONS.remove(cog)
 
+    def getSettings(self):
+        data = readDB("settings")
+
+        def convert_large_numbers(obj):
+            if isinstance(obj, float) and obj > 1e18:
+                return format(obj, 'f')
+            return obj
+
+        with open(f"setting.json", "w", encoding="UTF-8") as f:
+            json.dump(data, f, indent=4, ensure_ascii=False,
+                      default=convert_large_numbers)
+
+        print("setting.json updated")
     # Botが準備完了したときに呼ばれるイベントリスナー
+
     @commands.Cog.listener()
     async def on_ready(self):
         print("Cog cogmanage.py ready!")
@@ -42,12 +59,13 @@ class cogManagerCog(commands.Cog):
     @app_commands.command(name=settings["commands"]["reload"]["command"], description=settings["commands"]["reload"]["description"])
     @app_commands.default_permissions(administrator=True)
     async def reload(self, interaction: discord.Interaction):
+        await interaction.response.send_message("コグを再読み込みしました", ephemeral=True)
+        self.getSettings()
         self.getCogs()
         for cog in self.GLOBAL_INITIAL_EXTENSIONS:
             print("loading cogs...", "cogs."+cog[:-3])
             await self.bot.reload_extension("cogs."+cog[:-3])
         guild = discord.Object(int(settings["general"]["GuildID"]))
-        await interaction.response.send_message("コグを再読み込みしました", ephemeral=True)
         await self.bot.tree.sync(guild=guild)
         await self.bot.tree.sync()
 

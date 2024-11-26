@@ -167,7 +167,6 @@ class tokenCog(commands.Cog):
         targetInfo = db.readDB("user", str(toUser.id))
         targetInfo["token"] = targetInfo["token"] + amount
         db.writeDB("user", str(toUser.id), targetInfo)
-        print(targetInfo)
 
         if fromUser.id == settings["general"]["botClientID"]:
             isBOT = True

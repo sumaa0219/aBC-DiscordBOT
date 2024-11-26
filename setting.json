@@ -1,302 +1,14 @@
 {
-    "general": {
-        "name": "aBC DAO",
-        "GuildID": 1270650390303473714,
-        "botClientID": 1298190542881947670,
-        "tipwaveBotClientID": 1069358623484039209,
-        "description": {
-            "GuildID": {
-                "name": "サーバーID",
-                "description": "対象となるサーバーのID"
-            },
-            "botClientID": {
-                "name": "BOTクライアントID",
-                "description": "対象のBOTのクライアントID"
-            },
-            "tipwaveBotClientID": {
-                "name": "TipwaveBOTクライアントID",
-                "description": "対象のTipwaveBOTのクライアントID"
-            }
-        }
-    },
-    "channel": {
-        "welcome": 1270650390303473717,
-        "token": 1298169269535637595,
-        "selfintroduction": 1270650785499320352,
-        "reject": 1299052533280673833,
-        "adminConsole": 1298147892485427260,
-        "bigroom": 1283990012735520859,
-        "announcement": 1308023153112649759,
-        "login": 1308586120308723782,
-        "description": {
-            "welcome": {
-                "name": "welcomeチャンネルID",
-                "description": "新規参加者を歓迎するチャンネルのID"
-            },
-            "token": {
-                "name": "トークンチャンネルID",
-                "description": "トークンの取引の履歴を送信するチャンネルのID"
-            },
-            "selfintroduction": {
-                "name": "自己紹介チャンネルID",
-                "description": "自己紹介を行うチャンネルのID"
-            },
-            "reject": {
-                "name": "拒否チャンネルID",
-                "description": "自己紹介や大部屋の申請の際の拒否通知を行うチャンネルのID"
-            },
-            "adminConsole": {
-                "name": "管理者コンソールID",
-                "description": "管理者用のコンソールチャンネルのID"
-            },
-            "bigroom": {
-                "name": "大部屋チャンネルID",
-                "description": "アジェンダの申請を行うチャンネルのID"
-            },
-            "announcement": {
-                "name": "アナウンスチャンネルID",
-                "description": "アナウンスを行うチャンネルのID"
-            },
-            "login": {
-                "name": "ログインチャンネルID",
-                "description": "ログインボタンと残高表示ボタンを表示するチャンネルのID"
-            }
-        }
-    },
-    "category": {
-        "smallroom": 1271333937804873770,
-        "description": {
-            "smallroom": {
-                "name": "小部屋カテゴリID",
-                "description": "小部屋が生成されるカテゴリのID"
-            }
-        }
-    },
-    "role": {
-        "admin": 1270652576781566024,
-        "individualMember": 1298150545164468224,
-        "listenOnly": 1298150049687142420,
-        "manager": 1298642841764888718,
-        "description": {
-            "admin": {
-                "name": "管理者ロールID",
-                "description": "管理者権限を持つロールのID"
-            },
-            "individualMember": {
-                "name": "個人会員ロールID",
-                "description": "個人メンバーのロールID"
-            },
-            "listenOnly": {
-                "name": "聞き専ロールID",
-                "description": "聞き専のロールID"
-            },
-            "manager": {
-                "name": "運営ロールID",
-                "description": "運営メンバー用ののロールID"
-            }
-        }
-    },
-    "selfintroduction": {
-        "1": {
-            "content": "呼ばれたいニックネーム",
-            "min": 1
-        },
-        "2": {
-            "content": "所属",
-            "min": 1
+    "agenda": {
+        "4": {
+            "content": "説明",
+            "max": 410,
+            "min": 100
         },
         "3": {
-            "content": "貢献できること",
+            "content": "希望チャンネル名",
             "min": 1
         },
-        "4": {
-            "content": "具体的に、誰かとやりたいこと",
-            "min": 1
-        },
-        "5": {
-            "content": "1ヶ月で関われそうな時間",
-            "min": 1
-        },
-        "6": {
-            "content": "好きなこと、興味があること",
-            "min": 1
-        },
-        "7": {
-            "content": "ひとこと",
-            "min": 5
-        }
-    },
-    "token": {
-        "join": {
-            "token": 1000,
-            "description": "サーバー参加歓迎トークン"
-        },
-        "invited": {
-            "token": 500,
-            "description": "友達招待ありがとうございました！"
-        },
-        "selfintroduction": {
-            "token": 500,
-            "description": "自己紹介ありがとうございました！"
-        },
-        "loginWeekday": {
-            "token": 10,
-            "description": "平日ログインボーナス"
-        },
-        "loginWeekend": {
-            "token": 50,
-            "description": "週末ログインボーナス"
-        },
-        "loginWeekly": {
-            "token": 500,
-            "description": "週間ログインボーナス"
-        },
-        "loginMonthly": {
-            "token": 1000,
-            "description": "月間ログインボーナス"
-        },
-        "loginYearly": {
-            "token": 10000,
-            "description": "年間ログインボーナス"
-        },
-        "description": {
-            "join": {
-                "name": "参加トークン",
-                "description": "サーバー参加時に付与するトークン数"
-            },
-            "invited": {
-                "name": "招待トークン",
-                "description": "招待されたユーザーがサーバーに参加した際に招待ユーザーに付与するトークン数"
-            },
-            "selfintroduction": {
-                "name": "自己紹介トークン",
-                "description": "自己紹介チャンネルで自己紹介が承認された際に付与するトークン数"
-            },
-            "loginWeekday": {
-                "name": "平日ログインボーナス",
-                "description": "平日にログインした際に付与するトークン数"
-            },
-            "loginWeekend": {
-                "name": "週末ログインボーナス",
-                "description": "週末（土日）にログインした際に付与するトークン数"
-            },
-            "loginWeekly": {
-                "name": "週間ログインボーナス",
-                "description": "初めてのログインから7日ごとに付与するトークン数"
-            },
-            "loginMonthly": {
-                "name": "月間ログインボーナス",
-                "description": "初めてのログインから30日ごとに付与するトークン数"
-            },
-            "loginYearly": {
-                "name": "年間ログインボーナス",
-                "description": "初めてのログインから365日ごとに付与するトークン数"
-            }
-        }
-    },
-    "commands": {
-        "help": {
-            "command": "help",
-            "description": "コマンド一覧を表示します"
-        },
-        "show": {
-            "command": "show",
-            "description": "トークンの残高を表示します"
-        },
-        "send": {
-            "command": "send",
-            "description": "トークンをメンションしたユーザーに送付します"
-        },
-        "adminsend": {
-            "command": "adminsend",
-            "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**"
-        },
-        "reload": {
-            "command": "reload",
-            "description": "コグをホットリロードします  :exclamation: **管理者専用**"
-        },
-        "tipwavesend": {
-            "command": "tipwavesend",
-            "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**"
-        },
-        "resistmail": {
-            "command": "resistmail",
-            "description": "通知するメールアドレスを登録/変更します :exclamation: **運営専用**"
-        },
-        "switchmail": {
-            "command": "switchmail",
-            "description": "メールアドレスへの転送の有無を切り替えます :exclamation: **運営専用**"
-        },
-        "showalltoken": {
-            "command": "showall",
-            "description": "全ユーザーのトークン残高を多い順に表示します  :exclamation: **管理者専用**"
-        },
-        "login": {
-            "command": "login",
-            "description": "ログインボーナスを受け取れます"
-        },
-        "description": {
-            "help": {
-                "name": "helpコマンド",
-                "description": "コマンドの一覧を表示するコマンドの名前と説明"
-            },
-            "show": {
-                "name": "showコマンド",
-                "description": "トークンの残高を表示するコマンドの名前と説明"
-            },
-            "send": {
-                "name": "sendコマンド",
-                "description": "トークンをメンションしたユーザーに送付するコマンドの名前と説明"
-            },
-            "adminsend": {
-                "name": "adminsendコマンド",
-                "description": "トークンを指定したユーザーに送付するコマンドの名前と説明"
-            },
-            "reload": {
-                "name": "reloadコマンド",
-                "description": "コグをホットリロードするコマンドの名前と説明"
-            },
-            "tipwavesend": {
-                "name": "tipwavesendコマンド",
-                "description": "トークンを指定したユーザーに送付するコマンドの名前と説明"
-            },
-            "resistmail": {
-                "name": "resistmailコマンド",
-                "description": "通知するメールアドレスを登録/変更するコマンドの名前と説明"
-            },
-            "switchmail": {
-                "name": "switchmailコマンド",
-                "description": "メールアドレスへの転送の有無を切り替えるコマンドの名前と説明"
-            },
-            "showalltoken": {
-                "name": "showallコマンド",
-                "description": "全ユーザーのトークン残高を多い順に表示するコマンドの名前と説明"
-            },
-            "login": {
-                "name": "loginコマンド",
-                "description": "ログインボーナスを受け取れるコマンドの名前と説明"
-            }
-        }
-    },
-    "notification": {
-        "1283989394298114130": {
-            "discord": 1283989394298114130,
-            "webhookURL": "https://hooks.slack.com/services/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"
-        },
-        "1283989671998914600": {
-            "discord": 1283989671998914600,
-            "webhookURL": "https://hooks.slack.com/services/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"
-        },
-        "1283989596039938241": {
-            "discord": 1283989596039938241,
-            "webhookURL": "https://hooks.slack.com/services/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"
-        },
-        "1277811019611115530": {
-            "discord": 1277811019611115530,
-            "webhookURL": "https://hooks.slack.com/services/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"
-        }
-    },
-    "agenda": {
         "1": {
             "content": "プロジェクトエントリー",
             "min": 1
@@ -304,15 +16,6 @@
         "2": {
             "content": "タイトル",
             "min": 1
-        },
-        "3": {
-            "content": "希望チャンネル名",
-            "min": 1
-        },
-        "4": {
-            "content": "説明",
-            "max": 410,
-            "min": 100
         }
     },
     "announcement": {
@@ -320,11 +23,313 @@
             "message": "明日で今月のアジェンダの応募を締め切ります。明日以降は来月分となりますのでご注意ください。",
             "day": 24
         },
-        "description": {
+        "descriptions": {
             "justbefore": {
-                "name": "アジェンダ締め切り通知",
-                "description": "アジェンダの締め切りを通知するメッセージと締め切り日"
+                "description": "アジェンダの締め切りを通知するメッセージと締め切り日",
+                "name": "アジェンダ締め切り通知"
             }
+        }
+    },
+    "category": {
+        "descriptions": {
+            "smallroom": {
+                "description": "小部屋が生成されるカテゴリのID",
+                "name": "小部屋カテゴリID"
+            }
+        },
+        "smallroom": "1271333937804873770"
+    },
+    "channel": {
+        "announcement": "1308023153112649759",
+        "token": "1298169269535637595",
+        "invitation": "1310842201856675870",
+        "selfintroduction": "1270650785499320352",
+        "reject": "1299052533280673833",
+        "bigroom": "1283990012735520859",
+        "login": "1308586120308723782",
+        "welcome": "1270650390303473717",
+        "adminConsole": "1298147892485427260",
+        "descriptions": {
+            "announcement": {
+                "description": "アナウンスを行うチャンネルのID",
+                "name": "アナウンスチャンネルID"
+            },
+            "token": {
+                "description": "トークンの取引の履歴を送信するチャンネルのID",
+                "name": "トークンチャンネルID"
+            },
+            "invitation": {
+                "description": "招待リンクの作成を行うチャンネルのID",
+                "name": "招待リンク作成チャンネルID"
+            },
+            "login": {
+                "description": "ログインボタンと残高表示ボタンを表示するチャンネルのID",
+                "name": "ログインチャンネルID"
+            },
+            "reject": {
+                "description": "自己紹介や大部屋の申請の際の拒否通知を行うチャンネルのID",
+                "name": "拒否チャンネルID"
+            },
+            "bigroom": {
+                "description": "アジェンダの申請を行うチャンネルのID",
+                "name": "大部屋チャンネルID"
+            },
+            "selfintroduction": {
+                "description": "自己紹介を行うチャンネルのID",
+                "name": "自己紹介チャンネルID"
+            },
+            "welcome": {
+                "description": "新規参加者を歓迎するチャンネルのID",
+                "name": "welcomeチャンネルID"
+            },
+            "adminConsole": {
+                "description": "管理者用のコンソールチャンネルのID",
+                "name": "管理者コンソールID"
+            }
+        }
+    },
+    "commands": {
+        "resistmail": {
+            "description": "通知するメールアドレスを登録/変更します :exclamation: **運営専用**",
+            "command": "resistmail"
+        },
+        "switchmail": {
+            "description": "メールアドレスへの転送の有無を切り替えます :exclamation: **運営専用**",
+            "command": "switchmail"
+        },
+        "tipwavesend": {
+            "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**",
+            "command": "tipwavesend"
+        },
+        "showalltoken": {
+            "description": "全ユーザーのトークン残高を多い順に表示します  :exclamation: **管理者専用**",
+            "command": "showall"
+        },
+        "send": {
+            "description": "トークンをメンションしたユーザーに送付します",
+            "command": "send"
+        },
+        "show": {
+            "description": "トークンの残高を表示します",
+            "command": "show"
+        },
+        "login": {
+            "description": "ログインボーナスを受け取れます",
+            "command": "login"
+        },
+        "reload": {
+            "description": "コグをホットリロードします  :exclamation: **管理者専用**",
+            "command": "reload"
+        },
+        "help": {
+            "description": "コマンド一覧を表示します",
+            "command": "help"
+        },
+        "descriptions": {
+            "resistmail": {
+                "description": "通知するメールアドレスを登録/変更するコマンドの名前と説明",
+                "name": "resistmailコマンド"
+            },
+            "switchmail": {
+                "description": "メールアドレスへの転送の有無を切り替えるコマンドの名前と説明",
+                "name": "switchmailコマンド"
+            },
+            "reload": {
+                "description": "コグをホットリロードするコマンドの名前と説明",
+                "name": "reloadコマンド"
+            },
+            "send": {
+                "description": "トークンをメンションしたユーザーに送付するコマンドの名前と説明",
+                "name": "sendコマンド"
+            },
+            "showalltoken": {
+                "description": "全ユーザーのトークン残高を多い順に表示するコマンドの名前と説明",
+                "name": "showallコマンド"
+            },
+            "login": {
+                "description": "ログインボーナスを受け取れるコマンドの名前と説明",
+                "name": "loginコマンド"
+            },
+            "show": {
+                "description": "トークンの残高を表示するコマンドの名前と説明",
+                "name": "showコマンド"
+            },
+            "tipwavesend": {
+                "description": "トークンを指定したユーザーに送付するコマンドの名前と説明",
+                "name": "tipwavesendコマンド"
+            },
+            "help": {
+                "description": "コマンドの一覧を表示するコマンドの名前と説明",
+                "name": "helpコマンド"
+            },
+            "adminsend": {
+                "description": "トークンを指定したユーザーに送付するコマンドの名前と説明",
+                "name": "adminsendコマンド"
+            }
+        },
+        "adminsend": {
+            "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**",
+            "command": "adminsend"
+        }
+    },
+    "general": {
+        "tipwaveBotClientID": "1069358623484039209",
+        "botClientID": "1298190542881947670",
+        "GuildID": "1270650390303473714",
+        "descriptions": {
+            "GuildID": {
+                "description": "対象となるサーバーのID",
+                "name": "サーバーID"
+            },
+            "botClientID": {
+                "description": "対象のBOTのクライアントID",
+                "name": "BOTクライアントID"
+            },
+            "tipwaveBotClientID": {
+                "description": "対象のTipwaveBOTのクライアントID",
+                "name": "TipwaveBOTクライアントID"
+            }
+        },
+        "name": "aBC DAO"
+    },
+    "notification": {
+        "1283989671998914600": {
+            "discord": "1283989671998914600",
+            "webhookURL": "https://hooks.slack.com/services/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"
+        },
+        "1283989394298114130": {
+            "discord": "1283989394298114130",
+            "webhookURL": "https://hooks.slack.com/services/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"
+        },
+        "1277811019611115530": {
+            "discord": "1277811019611115530",
+            "webhookURL": "https://hooks.slack.com/services/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"
+        },
+        "1283989596039938241": {
+            "discord": "1283989596039938241",
+            "webhookURL": "https://hooks.slack.com/services/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"
+        }
+    },
+    "role": {
+        "listenOnly": "1298150049687142420",
+        "manager": "1298642841764888718",
+        "admin": "1270652576781566024",
+        "descriptions": {
+            "listenOnly": {
+                "description": "聞き専のロールID",
+                "name": "聞き専ロールID"
+            },
+            "manager": {
+                "description": "運営メンバー用ののロールID",
+                "name": "運営ロールID"
+            },
+            "admin": {
+                "description": "管理者権限を持つロールのID",
+                "name": "管理者ロールID"
+            },
+            "individualMember": {
+                "description": "個人メンバーのロールID",
+                "name": "個人会員ロールID"
+            }
+        },
+        "individualMember": "1298150545164468224"
+    },
+    "selfintroduction": {
+        "7": {
+            "content": "ひとこと",
+            "min": 5
+        },
+        "6": {
+            "content": "好きなこと、興味があること",
+            "min": 1
+        },
+        "5": {
+            "content": "1ヶ月で関われそうな時間",
+            "min": 1
+        },
+        "2": {
+            "content": "所属",
+            "min": 1
+        },
+        "1": {
+            "content": "呼ばれたいニックネーム",
+            "min": 1
+        },
+        "4": {
+            "content": "具体的に、誰かとやりたいこと",
+            "min": 1
+        },
+        "3": {
+            "content": "貢献できること",
+            "min": 1
+        }
+    },
+    "token": {
+        "loginMonthly": {
+            "description": "月間ログインボーナス",
+            "token": 1000
+        },
+        "loginWeekday": {
+            "description": "平日ログインボーナス",
+            "token": 10
+        },
+        "join": {
+            "description": "サーバー参加歓迎トークン",
+            "token": 1000
+        },
+        "loginWeekly": {
+            "description": "週間ログインボーナス",
+            "token": 500
+        },
+        "loginYearly": {
+            "description": "年間ログインボーナス",
+            "token": 10000
+        },
+        "selfintroduction": {
+            "description": "自己紹介ありがとうございました！",
+            "token": 500
+        },
+        "invited": {
+            "description": "友達招待ありがとうございました！",
+            "token": 500
+        },
+        "descriptions": {
+            "loginMonthly": {
+                "description": "初めてのログインから30日ごとに付与するトークン数",
+                "name": "月間ログインボーナス"
+            },
+            "loginWeekend": {
+                "description": "週末（土日）にログインした際に付与するトークン数",
+                "name": "週末ログインボーナス"
+            },
+            "loginWeekly": {
+                "description": "初めてのログインから7日ごとに付与するトークン数",
+                "name": "週間ログインボーナス"
+            },
+            "loginYearly": {
+                "description": "初めてのログインから365日ごとに付与するトークン数",
+                "name": "年間ログインボーナス"
+            },
+            "join": {
+                "description": "サーバー参加時に付与するトークン数",
+                "name": "参加トークン"
+            },
+            "invited": {
+                "description": "招待されたユーザーがサーバーに参加した際に招待ユーザーに付与するトークン数",
+                "name": "招待トークン"
+            },
+            "selfintroduction": {
+                "description": "自己紹介チャンネルで自己紹介が承認された際に付与するトークン数",
+                "name": "自己紹介トークン"
+            },
+            "loginWeekday": {
+                "description": "平日にログインした際に付与するトークン数",
+                "name": "平日ログインボーナス"
+            }
+        },
+        "loginWeekend": {
+            "description": "週末ログインボーナス",
+            "token": 50
         }
     }
 }

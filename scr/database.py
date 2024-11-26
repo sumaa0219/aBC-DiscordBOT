@@ -33,7 +33,7 @@ def writeDB(collection: str, document: str, field: json):
 
 def writeDBDB(collection: str, field: json):
     ref = db.collection(collection)
-    ref.set(field)
+    ref.add(field)
 
 
 def deleteDB(collection: str, document: str):
