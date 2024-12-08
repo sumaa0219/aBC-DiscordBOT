@@ -4,6 +4,7 @@ import discord
 import json
 from datetime import time, timezone, timedelta, datetime
 import scr.database as db
+import requests
 
 
 with open(f"setting.json", "r", encoding="UTF-8") as f:
@@ -22,8 +23,14 @@ voteTimes = [
 ]
 # アナウンスの時間を設定
 announceTimes = [
+    time(hour=17, tzinfo=JST),
+]
+
+webCacheReloadTimes = [
     time(hour=0, tzinfo=JST),
+    time(hour=6, tzinfo=JST),
     time(hour=12, tzinfo=JST),
+    time(hour=18, tzinfo=JST)
 ]
 
 
@@ -42,6 +49,11 @@ class taskCog(commands.Cog):
         nowday = datetime.now(JST).day
         if nowday != 25:
             return
+
+    @tasks.loop(time=webCacheReloadTimes)
+    async def webCacheReloadTask(self):
+        url = "https://dao.andbeyondcompany.com/api/getMarkdown?pageId=702f9444165b4a62aa5359dc49b83669"
+        response = requests.get(url, timeout=30)
 
     @tasks.loop(time=announceTimes)
     async def announceTask(self):

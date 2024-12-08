@@ -87,9 +87,9 @@ class tokenCog(commands.Cog):
             # 非同期で３秒待ってトークン付与
             await asyncio.sleep(3)
             await self.giveToken(self.bot.user, member, settings["token"]["join"]["token"], settings["token"]["join"]["description"])
-        await member.add_roles(member.guild.get_role(settings["role"]["listenOnly"]))
-        await self.bot.get_guild(settings["general"]["GuildID"]).get_channel(
-            settings["channel"]["welcome"]).send(f"{member.mention}さん、ようこそ！")
+        await member.add_roles(member.guild.get_role(int(settings["role"]["listenOnly"])))
+        await self.bot.get_guild(int(settings["general"]["GuildID"])).get_channel(
+            int(settings["channel"]["welcome"])).send(f"{member.mention}さん、ようこそ！")
 
     # メンバー情報を再読み込みするコマンド
     @app_commands.command(name="memberreset", description="メンバー全員の全ての情報をリセットします")
@@ -168,7 +168,7 @@ class tokenCog(commands.Cog):
         targetInfo["token"] = targetInfo["token"] + amount
         db.writeDB("user", str(toUser.id), targetInfo)
 
-        if fromUser.id == settings["general"]["botClientID"]:
+        if fromUser.id == int(settings["general"]["botClientID"]):
             isBOT = True
         else:
             userInfo = db.readDB("user", str(fromUser.id))

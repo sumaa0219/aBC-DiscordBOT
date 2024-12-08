@@ -175,6 +175,7 @@ class LoginView(discord.ui.View):  # UIキットを利用するためにdiscord.
 
         for item in loginMenu:
             await token.tokenCog(self.bot).giveToken(self.bot.user, interaction.user, settings["token"][item]["token"], settings["token"][item]["description"])
+            userInfo["token"] += settings["token"][item]["token"]
 
         db.writeDB("user", str(interaction.user.id), userInfo)
 

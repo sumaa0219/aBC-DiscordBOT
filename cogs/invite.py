@@ -74,17 +74,18 @@ class InvitationView(discord.ui.View):  # UIキットを利用するためにdis
 
     @discord.ui.button(label="招待リンクを作成", style=discord.ButtonStyle.success)
     async def invite(self, interaction: discord.Interaction, button: discord.ui.Button):
-        invite = await interaction.channel.create_invite(max_age=0, max_uses=0, unique=True)
+        invite = await interaction.channel.create_invite(max_age=0, max_uses=1, unique=True)
         # 招待リンクの情報を取得してデータベースに保存
         inviteInfo = {
             "id": invite.id,
             "url": invite.url,
             "inviter": interaction.user.id,
             "max_age": invite.max_age,
+            "max_uses": invite.max_uses,
             "uses": invite.uses
         }
         db.writeDB("invite", str(invite.id), inviteInfo)
-        message = f"招待リンクを作成しました。招待リンクは\nhttp://sssumaa.com:3000/join?code={invite.id}\nです。"
+        message = f"招待リンクを作成しました。招待リンクは\nhttps://dao.andbeyondcompany.com/join?code={invite.id}\nです。"
         await interaction.response.send_message(content=message, ephemeral=True)
 
 # Cogをセットアップする関数
