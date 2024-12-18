@@ -90,17 +90,6 @@ class bigroomCog(commands.Cog):
                     title = text[1].split(":")
                     channelName = text[2].split(":")
                     content = text[3].split(":")
-                    data = {
-                        "agendaID": agendaID,
-                        "title": title[1],
-                        "channelname": channelName[1],
-                        "content": content[1],
-                        "author": str(message.author.id),
-                        "time": datetime.datetime.now().strftime('%Y%m%d'),
-                        "autherIcon": message.author.avatar.url,
-                        "voteUser": []
-                    }
-                    db.writeDB("agenda", agendaID, data)
                     userInfo = db.readDB("user", str(message.author.id))
                     if userInfo["agenda"]["idList"] == None:
                         userInfo["agenda"]["idList"] = [agendaID]
@@ -112,6 +101,19 @@ class bigroomCog(commands.Cog):
                     await message.add_reaction("✅")
 
                     createdChannel = await self.createChannel(message.guild, channelName[1], content[1])
+                    data = {
+                        "agendaID": agendaID,
+                        "title": title[1],
+                        "channelname": channelName[1],
+                        "channelId": createdChannel.id,
+                        "content": content[1],
+                        "author": str(message.author.id),
+                        "time": datetime.datetime.now().strftime('%Y%m%d'),
+                        "endTime": (datetime.datetime.now() + datetime.timedelta(days=30)).strftime('%Y%m%d'),
+                        "autherIcon": message.author.avatar.url,
+                        "voteUser": []
+                    }
+                    db.writeDB("agenda", agendaID, data)
                     await createdChannel.send(f"アジェンダID: {agendaID}")
                     await createdChannel.send(f"アジェンダオーナー: {message.author.mention}")
 

@@ -3,6 +3,9 @@ import os
 import json
 from decimal import Decimal
 
+# data = db.readDB("agenda")
+# print(data)
+
 
 # 設定ファイルの読み込み
 with open(f"setting.json", "r", encoding="UTF-8") as f:

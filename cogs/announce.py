@@ -14,7 +14,7 @@ JST = timezone(timedelta(hours=+9), "JST")
 # 時刻をリストで設定
 # アナウンスの時間を設定
 announce10Times = [
-    time(hour=17, tzinfo=JST),
+    time(hour=10, tzinfo=JST),
 ]
 
 announce17Times = [
@@ -35,14 +35,16 @@ class announceCog(commands.Cog):
         self.announce10Task.start()
         self.announce17Task.start()
         self.announce22Task.start()
-        print("Cog task.py init!")
+        print("Cog announce.py init!")
 
     @tasks.loop(time=announce10Times)
     async def announce10Task(self):
         nowday = datetime.now(JST).day
         announceList = settings["announcement"]["announce10"].keys()
         for announce in announceList:
-            if nowday == int(settings["announcement"]["announce10"][announce]["day"]):
+            if announce == "descriptions":
+                pass
+            elif nowday == int(settings["announcement"]["announce10"][announce]["day"]):
                 announceMessage = settings["announcement"]["announce10"][announce]["message"]
                 await self.bot.get_channel(
                     int(settings["channel"]["announcement"])).send(content="@everyone\n" + announceMessage)
@@ -53,7 +55,9 @@ class announceCog(commands.Cog):
         nowday = datetime.now(JST).day
         announceList = settings["announcement"]["announce17"].keys()
         for announce in announceList:
-            if nowday == int(settings["announcement"]["announce17"][announce]["day"]):
+            if announce == "descriptions":
+                pass
+            elif nowday == int(settings["announcement"]["announce17"][announce]["day"]):
                 announceMessage = settings["announcement"]["announce17"][announce]["message"]
                 await self.bot.get_channel(
                     int(settings["channel"]["announcement"])).send(content="@everyone\n" + announceMessage)
@@ -64,7 +68,9 @@ class announceCog(commands.Cog):
         nowday = datetime.now(JST).day
         announceList = settings["announcement"]["announce22"].keys()
         for announce in announceList:
-            if nowday == int(settings["announcement"]["announce22"][announce]["day"]):
+            if announce == "descriptions":
+                pass
+            elif nowday == int(settings["announcement"]["announce22"][announce]["day"]):
                 announceMessage = settings["announcement"]["announce22"][announce]["message"]
                 await self.bot.get_channel(
                     int(settings["channel"]["announcement"])).send(content="@everyone\n" + announceMessage)
