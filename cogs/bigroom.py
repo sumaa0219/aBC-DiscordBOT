@@ -97,7 +97,6 @@ class bigroomCog(commands.Cog):
                         list(userInfo["agenda"]["idList"]).append(agendaID)
                     db.writeDB("user", str(message.author.id), userInfo)
 
-                    await message.reply(f"アジェンダID: {agendaID}")
                     await message.add_reaction("✅")
 
                     createdChannel = await self.createChannel(message.guild, channelName[1], content[1])

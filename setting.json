@@ -96,6 +96,7 @@
         "smallroom": "1271333937804873770"
     },
     "channel": {
+        "welcome": "1270650390303473717",
         "announcement": "1308023153112649759",
         "token": "1298169269535637595",
         "invitation": "1310842201856675870",
@@ -103,9 +104,8 @@
         "reject": "1299052533280673833",
         "bigroom": "1283990012735520859",
         "login": "1308586120308723782",
-        "welcome": "1270650390303473717",
-        "adminConsole": "1298147892485427260",
         "forum": "1319037586257219766",
+        "adminConsole": "1298147892485427260",
         "descriptions": {
             "announcement": {
                 "description": "アナウンスを行うチャンネルのID",
@@ -135,17 +135,17 @@
                 "description": "自己紹介を行うチャンネルのID",
                 "name": "自己紹介チャンネルID"
             },
-            "welcome": {
-                "description": "新規参加者を歓迎するチャンネルのID",
-                "name": "welcomeチャンネルID"
+            "forum": {
+                "description": "フォーラムのチャンネルID",
+                "name": "フォーラムチャンネルID"
             },
             "adminConsole": {
                 "description": "管理者用のコンソールチャンネルのID",
                 "name": "管理者コンソールID"
             },
-            "forum": {
-                "description": "フォーラムのチャンネルID",
-                "name": "フォーラムチャンネルID"
+            "welcome": {
+                "description": "新規参加者を歓迎するチャンネルのID",
+                "name": "welcomeチャンネルID"
             }
         }
     },
@@ -326,55 +326,11 @@
         }
     },
     "smallroom": {
-        "before": {
-            "announce17": {
-                "weekDayBefore": {
-                    "message": "あと一週間でこの小部屋を閉じます。お気を付けください。",
-                    "day": 7
-                },
-                "3DayBefore": {
-                    "message": "あと3日でこの小部屋を閉じます。",
-                    "day": 3
-                },
-                "1DayBefore": {
-                    "message": "明日でこの小部屋を閉じます。",
-                    "day": 1
-                },
-                "0DayBefore": {
-                    "message": "本日23:59を持ちましてこの小部屋への書き込みが制限されます。なおこのチャンネルは1週願後にアーカイブ化されます。",
-                    "day": 0
-                },
-                "descriptions": {
-                    "weekDayBefore": {
-                        "description": "小部屋を閉じる1週間前の通知の設定",
-                        "name": "小部屋を閉じる1週間前"
-                    },
-                    "3DayBefore": {
-                        "description": "小部屋を閉じる3日前の通知の設定",
-                        "name": "小部屋を閉じる3日前"
-                    },
-                    "1DayBefore": {
-                        "description": "小部屋を閉じる1日前の通知の設定",
-                        "name": "小部屋を閉じる1日前"
-                    },
-                    "0DayBefore": {
-                        "description": "小部屋を閉じる日の通知の設定",
-                        "name": "小部屋を閉じる日"
-                    }
-                }
-            },
-            "descriptions": {
-                "announce17": {
-                    "description": "17時に通知するアナウンスの設定",
-                    "name": "17時に通知するアナウンスの設定"
-                }
-            }
-        },
         "after": {
             "announce17": {
                 "weekDayAfter": {
                     "message": "この小部屋はアーカイブ化されました。",
-                    "day": 0
+                    "day": -7
                 },
                 "descriptions": {
                     "weekDayAfter": {
@@ -386,7 +342,7 @@
             "announce0": {
                 "1DayAfter": {
                     "message": "この小部屋の書き込みが制限されました。",
-                    "day": 1
+                    "day": -1
                 },
                 "descriptions": {
                     "1DayAfter": {
@@ -396,14 +352,58 @@
                 }
             }
         },
-        "descriptions": {
-            "before": {
-                "description": "小部屋を閉じる前の通知の設定",
-                "name": "小部屋が閉じる前の通知"
+        "before": {
+            "announce17": {
+                "3DayBefore": {
+                    "message": "あと3日でこの小部屋を閉じます。",
+                    "day": 3
+                },
+                "weekDayBefore": {
+                    "message": "あと一週間でこの小部屋を閉じます。お気を付けください。",
+                    "day": 7
+                },
+                "0DayBefore": {
+                    "message": "本日23:59を持ちましてこの小部屋への書き込みが制限されます。なおこのチャンネルは1週願後にアーカイブ化されます。",
+                    "day": 0
+                },
+                "descriptions": {
+                    "3DayBefore": {
+                        "description": "小部屋を閉じる3日前の通知の設定",
+                        "name": "小部屋を閉じる3日前"
+                    },
+                    "0DayBefore": {
+                        "description": "小部屋を閉じる日の通知の設定",
+                        "name": "小部屋を閉じる日"
+                    },
+                    "weekDayBefore": {
+                        "description": "小部屋を閉じる1週間前の通知の設定",
+                        "name": "小部屋を閉じる1週間前"
+                    },
+                    "1DayBefore": {
+                        "description": "小部屋を閉じる1日前の通知の設定",
+                        "name": "小部屋を閉じる1日前"
+                    }
+                },
+                "1DayBefore": {
+                    "message": "明日でこの小部屋を閉じます。",
+                    "day": 1
+                }
             },
+            "descriptions": {
+                "announce17": {
+                    "description": "17時に通知するアナウンスの設定",
+                    "name": "17時に通知するアナウンスの設定"
+                }
+            }
+        },
+        "descriptions": {
             "after": {
                 "description": "小部屋を閉じた後の通知の設定",
                 "name": "小部屋が閉じた後の通知"
+            },
+            "before": {
+                "description": "小部屋を閉じる前の通知の設定",
+                "name": "小部屋が閉じる前の通知"
             }
         }
     },
