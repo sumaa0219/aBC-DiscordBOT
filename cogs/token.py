@@ -167,6 +167,7 @@ class tokenCog(commands.Cog):
         targetInfo = db.readDB("user", str(toUser.id))
         targetInfo["token"] = targetInfo["token"] + amount
         db.writeDB("user", str(toUser.id), targetInfo)
+        print(f"{fromUser.display_name}から{toUser.display_name}に{amount}トークン送金を開始します")
 
         if fromUser.id == int(settings["general"]["botClientID"]):
             isBOT = True
@@ -174,6 +175,8 @@ class tokenCog(commands.Cog):
             userInfo = db.readDB("user", str(fromUser.id))
             userInfo["token"] = userInfo["token"] - amount
             db.writeDB("user", str(fromUser.id), userInfo)
+
+        print("transaction completed")
 
         # 送金履歴の記録
         transactionID = ''.join(random.choices(

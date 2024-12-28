@@ -32,9 +32,18 @@ class announceCog(commands.Cog):
         global settings
         with open(f"setting.json", "r", encoding="UTF-8") as f:
             settings = json.load(f)
-        self.announce10Task.start()
-        self.announce17Task.start()
-        self.announce22Task.start()
+        if self.announce10Task.is_running():
+            self.announce10Task.restart()
+        else:
+            self.announce10Task.start()
+        if self.announce17Task.is_running():
+            self.announce17Task.restart()
+        else:
+            self.announce17Task.start()
+        if self.announce22Task.is_running():
+            self.announce22Task.restart()
+        else:
+            self.announce22Task.start()
         print("Cog announce.py init!")
 
     @tasks.loop(time=announce10Times)

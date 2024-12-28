@@ -40,8 +40,22 @@ class taskCog(commands.Cog):
         global settings
         with open(f"setting.json", "r", encoding="UTF-8") as f:
             settings = json.load(f)
-        self.updateTask.start()
-        self.voteTask.start()
+        if self.updateTask.is_running():
+            self.updateTask.restart()
+        else:
+            self.updateTask.start()
+        if self.announceTask.is_running():
+            self.announceTask.restart()
+        else:
+            self.announceTask.start()
+        if self.webCacheReloadTask.is_running():
+            self.webCacheReloadTask.restart()
+        else:
+            self.webCacheReloadTask.start()
+        if self.voteTask.is_running():
+            self.voteTask.restart()
+        else:
+            self.voteTask.start()
         print("Cog task.py init!")
 
     @tasks.loop(time=voteTimes)

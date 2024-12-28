@@ -5,6 +5,7 @@ import os
 import json
 from scr.database import readDB
 from decimal import Decimal
+import time
 
 
 # 読み込まないコグのリスト
@@ -54,6 +55,21 @@ class cogManagerCog(commands.Cog):
     async def on_ready(self):
         print("Cog cogmanage.py ready!")
         await self.load_all_extentions()
+
+    @app_commands.command(name="delete_messages", description="Deletes a lot messages from 200 messegases",)
+    @app_commands.default_permissions(administrator=True)
+    async def delete_messages(self, interaction: discord.Interaction, member: discord.Member, limit: int):
+        await interaction.response.defer()
+        maxcuount = 0
+        async for message in interaction.channel.history(limit=200):
+            if message.author == member and maxcuount < limit:
+                await message.delete()
+                maxcuount += 1
+                time.sleep(0.1)
+        logger.info(f"{member.display_name}'s last {limit} messages deleted.")
+        await interaction.followup.send(
+            f"{member.display_name}'s last {limit} messages deleted."
+        )
 
     # コグを再読み込みするコマンド
     @app_commands.command(name=settings["commands"]["reload"]["command"], description=settings["commands"]["reload"]["description"])

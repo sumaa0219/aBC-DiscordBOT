@@ -28,8 +28,14 @@ class smallroomCog(commands.Cog):
         global settings
         with open(f"setting.json", "r", encoding="UTF-8") as f:
             settings = json.load(f)
-        self.announce17Task.start()
-        self.endTask.start()
+        if self.announce17Task.is_running():
+            self.announce17Task.restart()
+        else:
+            self.announce17Task.start()
+        if self.endTask.is_running():
+            self.endTask.restart()
+        else:
+            self.endTask.start()
         print("Cog smallroom.py init!")
 
     @tasks.loop(time=announceTimes)

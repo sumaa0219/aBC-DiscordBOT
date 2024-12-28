@@ -113,6 +113,7 @@ class bigroomCog(commands.Cog):
                         "voteUser": []
                     }
                     db.writeDB("agenda", agendaID, data)
+                    await token.tokenCog(self.bot).giveToken(self.bot.user, message.author, settings["token"]["agendaup"]["token"], settings["token"]["agendaup"]["description"])
                     await createdChannel.send(f"アジェンダID: {agendaID}")
                     await createdChannel.send(f"アジェンダオーナー: {message.author.mention}")
 

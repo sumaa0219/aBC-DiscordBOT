@@ -412,21 +412,21 @@
             "description": "月間ログインボーナス",
             "token": 1000
         },
-        "loginWeekday": {
-            "description": "平日ログインボーナス",
-            "token": 10
+        "loginWeekend": {
+            "description": "週末ログインボーナス",
+            "token": 50
         },
-        "join": {
-            "description": "サーバー参加歓迎トークン",
-            "token": 1000
+        "loginYearly": {
+            "description": "年間ログインボーナス",
+            "token": 10000
         },
         "loginWeekly": {
             "description": "週間ログインボーナス",
             "token": 500
         },
-        "loginYearly": {
-            "description": "年間ログインボーナス",
-            "token": 10000
+        "join": {
+            "description": "サーバー参加歓迎トークン",
+            "token": 1000
         },
         "selfintroduction": {
             "description": "自己紹介ありがとうございました！",
@@ -435,6 +435,10 @@
         "invited": {
             "description": "友達招待ありがとうございました！",
             "token": 500
+        },
+        "agendaup": {
+            "description": "アジェンダ投稿ありがとうございました！",
+            "token": 5000
         },
         "descriptions": {
             "loginMonthly": {
@@ -465,14 +469,18 @@
                 "description": "自己紹介チャンネルで自己紹介が承認された際に付与するトークン数",
                 "name": "自己紹介トークン"
             },
+            "agendaup": {
+                "description": "アジェンダが投稿された際に付与するトークン数",
+                "name": "アジェンダ投稿トークン"
+            },
             "loginWeekday": {
                 "description": "平日にログインした際に付与するトークン数",
                 "name": "平日ログインボーナス"
             }
         },
-        "loginWeekend": {
-            "description": "週末ログインボーナス",
-            "token": 50
+        "loginWeekday": {
+            "description": "平日ログインボーナス",
+            "token": 10
         }
     }
 }
