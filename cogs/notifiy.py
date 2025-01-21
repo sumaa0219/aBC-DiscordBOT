@@ -57,6 +57,7 @@ class notifiyCog(commands.Cog):
     async def on_message(self, message: discord.Message):
         if message.author.bot:
             return
+
         # 特定のチャンネルでメッセージが送信された場合
         if str(message.channel.id) in list(settings["notification"].keys()):
             message.content = message.content.replace(

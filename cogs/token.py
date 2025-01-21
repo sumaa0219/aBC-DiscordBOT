@@ -33,7 +33,12 @@ class tokenCog(commands.Cog):
     async def on_ready(self):
         print("Cog token.py ready!")
 
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        await self.giveToken(self.bot.user, payload.member, settings["token"]["reaction"]["token"], settings["token"]["reaction"]["description"])
+
     # トークン残高を表示するコマンド
+
     @app_commands.command(name=settings["commands"]["show"]["command"], description=settings["commands"]["show"]["description"])
     async def show(self, interaction: discord.Interaction):
         user = db.readDB("user", str(interaction.user.id))

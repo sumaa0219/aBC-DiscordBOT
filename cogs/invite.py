@@ -41,8 +41,12 @@ class inviteCog(commands.Cog):
                 invites = await member.guild.invites()
                 oldInvites = db.readDB("invite")
                 for invite in invites:
+
                     # 招待リンクの使用回数が増えている場合
                     if int(oldInvites[invite.id]["uses"]) < int(invite.uses):
+                        # 特定の招待リンクの使用者に役職を付与
+                        if invite.id == str(settings["invitations"]["individualMember"]["id"]):
+                            await member.add_roles(discord.Object(int(settings["role"]["individualMember"])))
                         # 招待者にトークンを付与
                         await token.tokenCog(self.bot).giveToken(self.bot.user, member.guild.get_member(int(oldInvites[invite.id]["inviter"])), settings["token"]["invited"]["token"], settings["token"]["invited"]["description"])
                         oldInvites[invite.id]["users"] = invite.uses

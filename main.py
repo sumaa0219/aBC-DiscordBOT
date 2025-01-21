@@ -18,23 +18,12 @@ import locale
 #         discord.opus.load_opus("/usr/lib/x86_64-linux-gnu/libopus.so.0")
 #         print("subopus loaded")
 
-
 locale.setlocale(locale.LC_TIME, 'ja_JP.UTF-8')
-
 load_dotenv()
-
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--debug", action="store_true",
-                    help="Use the debug token")
-args = parser.parse_args()
-
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 
-if args.debug:
-    TOKEN = os.environ['debug']
-else:
-    TOKEN = os.environ['token']
+
+TOKEN = os.environ['token']
 
 
 @bot.event

@@ -1,13 +1,13 @@
 {
     "agenda": {
-        "4": {
-            "content": "説明",
-            "max": 410,
-            "min": 100
-        },
         "3": {
             "content": "希望チャンネル名",
             "min": 1
+        },
+        "4": {
+            "content": "説明",
+            "min": 100,
+            "max": 510
         },
         "1": {
             "content": "プロジェクトエントリー",
@@ -102,6 +102,7 @@
         "invitation": "1310842201856675870",
         "selfintroduction": "1270650785499320352",
         "reject": "1299052533280673833",
+        "taskforum": "1327178404239249489",
         "bigroom": "1283990012735520859",
         "login": "1308586120308723782",
         "forum": "1319037586257219766",
@@ -182,6 +183,10 @@
             "description": "コグをホットリロードします  :exclamation: **管理者専用**",
             "command": "reload"
         },
+        "archive": {
+            "description": "小部屋をアーカイブ化します  :exclamation: **運営専用**",
+            "command": "archive"
+        },
         "help": {
             "description": "コマンド一覧を表示します",
             "command": "help"
@@ -195,6 +200,10 @@
                 "description": "メールアドレスへの転送の有無を切り替えるコマンドの名前と説明",
                 "name": "switchmailコマンド"
             },
+            "archive": {
+                "description": "小部屋をアーカイブ化するコマンドの名前と説明",
+                "name": "archiveコマンド"
+            },
             "reload": {
                 "description": "コグをホットリロードするコマンドの名前と説明",
                 "name": "reloadコマンド"
@@ -203,10 +212,6 @@
                 "description": "トークンをメンションしたユーザーに送付するコマンドの名前と説明",
                 "name": "sendコマンド"
             },
-            "showalltoken": {
-                "description": "全ユーザーのトークン残高を多い順に表示するコマンドの名前と説明",
-                "name": "showallコマンド"
-            },
             "login": {
                 "description": "ログインボーナスを受け取れるコマンドの名前と説明",
                 "name": "loginコマンド"
@@ -214,6 +219,10 @@
             "show": {
                 "description": "トークンの残高を表示するコマンドの名前と説明",
                 "name": "showコマンド"
+            },
+            "showalltoken": {
+                "description": "全ユーザーのトークン残高を多い順に表示するコマンドの名前と説明",
+                "name": "showallコマンド"
             },
             "tipwavesend": {
                 "description": "トークンを指定したユーザーに送付するコマンドの名前と説明",
@@ -252,6 +261,26 @@
             }
         },
         "name": "aBC DAO"
+    },
+    "invitations": {
+        "beyonders": {
+            "description": "招待リンクを作成します",
+            "id": "aaaa"
+        },
+        "descriptions": {
+            "beyonders": {
+                "description": "beyondersロールを付与する招待リンクのID",
+                "name": "beyonders招待リンクID"
+            },
+            "manager": {
+                "description": "運営ロールを付与する招待リンクのID",
+                "name": "運営招待リンクID"
+            }
+        },
+        "individualMember": {
+            "description": "招待リンクを作成します",
+            "id": "XJfj9NZB9D"
+        }
     },
     "notification": {
         "1283989671998914600": {
@@ -407,6 +436,31 @@
             }
         }
     },
+    "task": {
+        "message": {
+            "content": "タスク完了ありがとうございました！"
+        },
+        "rank": {
+            "3": {
+                "description": "難易度３のタスク完了時のトークン",
+                "token": 300
+            },
+            "1": {
+                "description": "難易度１のタスク完了時のトークン",
+                "token": 100
+            },
+            "2": {
+                "description": "難易度２のタスク完了時のトークン",
+                "token": 200
+            }
+        },
+        "descriptions": {
+            "task": {
+                "description": "タスクの設定",
+                "name": "タスク"
+            }
+        }
+    },
     "token": {
         "loginMonthly": {
             "description": "月間ログインボーナス",
@@ -431,6 +485,10 @@
         "selfintroduction": {
             "description": "自己紹介ありがとうございました！",
             "token": 500
+        },
+        "reaction": {
+            "description": "リアクションありがとうございました！",
+            "token": 1
         },
         "invited": {
             "description": "友達招待ありがとうございました！",
@@ -464,6 +522,10 @@
             "invited": {
                 "description": "招待されたユーザーがサーバーに参加した際に招待ユーザーに付与するトークン数",
                 "name": "招待トークン"
+            },
+            "reaction": {
+                "description": "リアクションがついた際に付与するトークン数",
+                "name": "リアクショントークン"
             },
             "selfintroduction": {
                 "description": "自己紹介チャンネルで自己紹介が承認された際に付与するトークン数",

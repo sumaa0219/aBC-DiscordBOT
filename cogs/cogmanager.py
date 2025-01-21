@@ -92,8 +92,11 @@ class cogManagerCog(commands.Cog):
         embed = discord.Embed(
             title="このBOTに登録されているコマンドを表示します", description="コマンド一覧", color=0x00ff00)
         for command in settings["commands"]:
-            embed.add_field(name=settings["commands"][command]["command"],
-                            value=settings["commands"][command]["description"], inline=False)
+            if command == "description":
+                continue
+            else:
+                embed.add_field(name=settings["commands"][command]["command"],
+                                value=settings["commands"][command]["description"], inline=False)
         await interaction.followup.send(embed=embed)
 
     # 全てのコグを読み込む関数

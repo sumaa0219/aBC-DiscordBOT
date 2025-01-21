@@ -64,6 +64,12 @@ class smallroomCog(commands.Cog):
                     # 変更する
                     await channel.set_permissions(role, overwrite=overwrite)
 
+    @app_commands.command(name=settings["commands"]["archive"]["command"], description=settings["commands"]["archive"]["description"])
+    @app_commands.default_permissions(administrator=True)
+    async def channnelArchive(self, interaction: discord.Interaction, channelid: str):
+        await interaction.response.send_message("アーカイブしました", ephemeral=True)
+        await self.archive_channel(int(channelid))
+
     async def announce(self, announceTime):
         announceTime = "announce" + str(announceTime)
         data = db.readDB("agenda")
@@ -110,7 +116,7 @@ class smallroomCog(commands.Cog):
         # メッセージをEmbedにして投稿
         async for message in channel.history(limit=None, oldest_first=True):
             embed = discord.Embed(
-                title=f"{message.author}",
+                title=f"{message.author.display_name}",
                 description=message.content,
                 timestamp=message.created_at
             )
