@@ -451,7 +451,7 @@
             },
             "2": {
                 "description": "難易度２のタスク完了時のトークン",
-                "token": 200
+                "token": 199
             }
         },
         "descriptions": {

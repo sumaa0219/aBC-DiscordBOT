@@ -5,6 +5,7 @@ import json
 from datetime import time, timezone, timedelta, datetime
 import scr.database as db
 import requests
+import time as tm
 
 
 with open(f"setting.json", "r", encoding="UTF-8") as f:
@@ -90,15 +91,21 @@ class taskCog(commands.Cog):
     #             int(settings["channel"]["announcement"])).send(announceMessage)
     #         return
 
+    # @app_commands.command(name="aaaa", description="aaaa")
     @tasks.loop(time=updateTimes, reconnect=True)
     async def updateTask(self):
         print("nameChangeTask")
         userInfos = db.readDB("user")
         for userInfo in userInfos:
+            print(userInfo)
             changeFlag = 0
             user = self.bot.get_guild(
                 int(settings["general"]["GuildID"])).get_member(int(userInfo))
-            displayName = user.display_name
+            print(user)
+            try:
+                displayName = user.display_name
+            except:
+                displayName = user.name
             displayAvatarURL = user.display_avatar.url
             roleName = self.bot.get_guild(
                 int(settings["general"]["GuildID"])).get_role(int(user.roles[-1].id)).name
