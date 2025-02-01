@@ -67,8 +67,6 @@ class LoginView(discord.ui.View):  # UIキットを利用するためにdiscord.
         if len(loginMenu) != 0:
             loginMenu.append("loginMonthly")
             userInfo["login"]["monthly"] = today
-            loginMenu.append("loginWeekly")
-            userInfo["login"]["weekly"] = today
             userInfo["login"]["total"] = 1
         else:
             mounthlydelta = datetime.datetime.strptime(
@@ -80,11 +78,6 @@ class LoginView(discord.ui.View):  # UIキットを利用するためにdiscord.
                 loginMenu.append("loginMonthly")
             weeklydelta = datetime.datetime.strptime(
                 today, '%Y:%m:%d') - datetime.datetime.strptime(userInfo["login"]["weekly"], '%Y:%m:%d')
-
-            if weeklydelta.days >= 7:
-                loginMessage += settings["token"]["loginWeekly"]["description"] + "\n"
-                userInfo["login"]["weekly"] = today
-                loginMenu.append("loginWeekly")
 
         try:
             daydalta = datetime.datetime.strptime(
@@ -102,8 +95,22 @@ class LoginView(discord.ui.View):  # UIキットを利用するためにdiscord.
                 loginMessage += settings["token"]["loginWeekend"]["description"] + "\n"
                 loginMenu.append("loginWeekend")
 
+            if daydaltaDays == 1:
+                try:
+                    userInfo["login"]["continuous"] += 1
+                except:
+                    userInfo["login"]["continuous"] = 1
+
+            else:
+                userInfo["login"]["continuous"] = 1
+
             userInfo["login"]["day"] = today
             userInfo["login"]["total"] += 1
+
+        if userInfo["login"]["continuous"] % 7 == 0:
+            loginMessage += settings["token"]["loginWeekly"]["description"] + "\n"
+            userInfo["login"]["weekly"] = today
+            loginMenu.append("loginWeekly")
 
         for item in loginMenu:
             await token.tokenCog(self.bot).giveToken(self.bot.user, interaction.user, settings["token"][item]["token"], settings["token"][item]["description"])

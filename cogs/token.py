@@ -168,6 +168,8 @@ class tokenCog(commands.Cog):
     async def giveToken(self, fromUser: discord.Member, toUser: discord.Member, amount: int, discription: str):
         print("giveToken fuction called")
         isBOT = False
+        if amount <= 0:
+            return
         # 送金処理(送られた側)
         targetInfo = db.readDB("user", str(toUser.id))
         targetInfo["token"] = targetInfo["token"] + amount

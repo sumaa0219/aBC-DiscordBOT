@@ -440,24 +440,24 @@
         "message": {
             "content": "タスク完了ありがとうございました！"
         },
-        "rank": {
-            "3": {
-                "description": "難易度３のタスク完了時のトークン",
-                "token": 300
-            },
-            "1": {
-                "description": "難易度１のタスク完了時のトークン",
-                "token": 100
-            },
-            "2": {
-                "description": "難易度２のタスク完了時のトークン",
-                "token": 199
-            }
-        },
         "descriptions": {
             "task": {
                 "description": "タスクの設定",
                 "name": "タスク"
+            }
+        },
+        "rank": {
+            "3": {
+                "description": "難易度３のタスク完了時のトークン",
+                "token": 3000
+            },
+            "1": {
+                "description": "難易度１のタスク完了時のトークン",
+                "token": 500
+            },
+            "2": {
+                "description": "難易度２のタスク完了時のトークン",
+                "token": 1000
             }
         }
     },
@@ -471,11 +471,11 @@
             "token": 50
         },
         "loginYearly": {
-            "description": "年間ログインボーナス",
+            "description": "初期メンバー特典ボーナス",
             "token": 10000
         },
         "loginWeekly": {
-            "description": "週間ログインボーナス",
+            "description": "1週間連続ログインボーナス",
             "token": 500
         },
         "join": {
@@ -508,8 +508,8 @@
                 "name": "週末ログインボーナス"
             },
             "loginWeekly": {
-                "description": "初めてのログインから7日ごとに付与するトークン数",
-                "name": "週間ログインボーナス"
+                "description": "連続7日間のログインごとに付与するトークン数",
+                "name": "1週間連続ログインボーナス"
             },
             "loginYearly": {
                 "description": "初めてのログインから365日ごとに付与するトークン数",

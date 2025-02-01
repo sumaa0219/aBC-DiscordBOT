@@ -97,11 +97,9 @@ class taskCog(commands.Cog):
         print("nameChangeTask")
         userInfos = db.readDB("user")
         for userInfo in userInfos:
-            print(userInfo)
             changeFlag = 0
             user = self.bot.get_guild(
                 int(settings["general"]["GuildID"])).get_member(int(userInfo))
-            print(user)
             try:
                 displayName = user.display_name
             except:
