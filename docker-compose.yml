@@ -1,0 +1,12 @@
+version: '3'
+services:
+  python:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: 'abc-discord-bot'
+    working_dir: '/abc-discord-bot'
+    tty: true
+    volumes:
+      - ./:/abc-discord-bot

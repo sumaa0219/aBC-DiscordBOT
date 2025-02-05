@@ -83,9 +83,11 @@ class tokenCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
-        if db.readDB("user", str(member.id)):
-            pass
-        else:
+        try:
+            Nan = db.readDB("user", str(member.id))
+
+        except:
+
             userInfomation = self.getDefaultData(member, 0)
             # userInfomationをDBに書き込み
             db.writeDB("user", str(member.id), userInfomation)
@@ -96,7 +98,17 @@ class tokenCog(commands.Cog):
         await self.bot.get_guild(int(settings["general"]["GuildID"])).get_channel(
             int(settings["channel"]["welcome"])).send(f"{member.mention}さん、ようこそ！")
 
+    @commands.Cog.listener()
+    async def on_message(self, message: discord.Message):
+        target_channels = [1334164688216264734,
+                           1277805623999725590]  # ここに対象のチャンネルIDを追加
+        target_categories = [1271333937804873770]  # ここに対象のカテゴリIDを追加
+        if (message.channel.id in target_channels or
+                (message.channel.category and message.channel.category.id in target_categories)):
+            await self.giveToken(self.bot.user, message.author, 100, "投稿ありがとうございます")
+
     # メンバー情報を再読み込みするコマンド
+
     @app_commands.command(name="memberreset", description="メンバー全員の全ての情報をリセットします")
     @app_commands.default_permissions(administrator=True)
     async def loadmember(self, interaction: discord.Interaction):
@@ -119,7 +131,7 @@ class tokenCog(commands.Cog):
     # デフォルトのユーザー情報を取得する関数
     def getDefaultData(self, member: discord.Member, hasToken: int):
         userInfomation = {
-            "userID": member.id,
+            "userID": str(member.id),
             "userDisplayName": member.display_name,
             "userDisplayIcon": str(member.display_avatar.url),
             "token": hasToken,
@@ -168,8 +180,7 @@ class tokenCog(commands.Cog):
     async def giveToken(self, fromUser: discord.Member, toUser: discord.Member, amount: int, discription: str):
         print("giveToken fuction called")
         isBOT = False
-        if amount <= 0:
-            return
+
         # 送金処理(送られた側)
         targetInfo = db.readDB("user", str(toUser.id))
         targetInfo["token"] = targetInfo["token"] + amount

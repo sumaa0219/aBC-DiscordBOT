@@ -464,27 +464,23 @@
     "token": {
         "loginMonthly": {
             "description": "月間ログインボーナス",
-            "token": 1000
+            "token": 0
         },
-        "loginWeekend": {
-            "description": "週末ログインボーナス",
-            "token": 50
-        },
-        "loginYearly": {
-            "description": "初期メンバー特典ボーナス",
-            "token": 10000
-        },
-        "loginWeekly": {
-            "description": "1週間連続ログインボーナス",
-            "token": 500
+        "loginWeekday": {
+            "description": "平日ログインボーナス",
+            "token": 10
         },
         "join": {
             "description": "サーバー参加歓迎トークン",
             "token": 1000
         },
-        "selfintroduction": {
-            "description": "自己紹介ありがとうございました！",
-            "token": 500
+        "loginYearly": {
+            "description": "初期メンバー特典ボーナス",
+            "token": 0
+        },
+        "loginWeekly": {
+            "description": "1週間連続ログインボーナス",
+            "token": 100
         },
         "reaction": {
             "description": "リアクションありがとうございました！",
@@ -492,6 +488,10 @@
         },
         "invited": {
             "description": "友達招待ありがとうございました！",
+            "token": 500
+        },
+        "selfintroduction": {
+            "description": "自己紹介ありがとうございました！",
             "token": 500
         },
         "agendaup": {
@@ -503,9 +503,13 @@
                 "description": "初めてのログインから30日ごとに付与するトークン数",
                 "name": "月間ログインボーナス"
             },
-            "loginWeekend": {
-                "description": "週末（土日）にログインした際に付与するトークン数",
-                "name": "週末ログインボーナス"
+            "loginWeekday": {
+                "description": "平日にログインした際に付与するトークン数",
+                "name": "平日ログインボーナス"
+            },
+            "join": {
+                "description": "サーバー参加時に付与するトークン数",
+                "name": "参加トークン"
             },
             "loginWeekly": {
                 "description": "連続7日間のログインごとに付与するトークン数",
@@ -515,14 +519,6 @@
                 "description": "初めてのログインから365日ごとに付与するトークン数",
                 "name": "年間ログインボーナス"
             },
-            "join": {
-                "description": "サーバー参加時に付与するトークン数",
-                "name": "参加トークン"
-            },
-            "invited": {
-                "description": "招待されたユーザーがサーバーに参加した際に招待ユーザーに付与するトークン数",
-                "name": "招待トークン"
-            },
             "reaction": {
                 "description": "リアクションがついた際に付与するトークン数",
                 "name": "リアクショントークン"
@@ -531,18 +527,22 @@
                 "description": "自己紹介チャンネルで自己紹介が承認された際に付与するトークン数",
                 "name": "自己紹介トークン"
             },
+            "invited": {
+                "description": "招待されたユーザーがサーバーに参加した際に招待ユーザーに付与するトークン数",
+                "name": "招待トークン"
+            },
             "agendaup": {
                 "description": "アジェンダが投稿された際に付与するトークン数",
                 "name": "アジェンダ投稿トークン"
             },
-            "loginWeekday": {
-                "description": "平日にログインした際に付与するトークン数",
-                "name": "平日ログインボーナス"
+            "loginWeekend": {
+                "description": "週末（土日）にログインした際に付与するトークン数",
+                "name": "週末ログインボーナス"
             }
         },
-        "loginWeekday": {
-            "description": "平日ログインボーナス",
-            "token": 10
+        "loginWeekend": {
+            "description": "週末ログインボーナス",
+            "token": 0
         }
     }
 }
