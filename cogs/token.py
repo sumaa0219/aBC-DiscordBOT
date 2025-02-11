@@ -81,6 +81,19 @@ class tokenCog(commands.Cog):
 
     # サーバー参加時に呼ばれるイベントリスナー
 
+    # @app_commands.command(name="addmember", description="addmember")
+    # @app_commands.default_permissions(administrator=True)
+    # async def addmember(self, interaction: discord.Interaction, user: discord.Member):
+    #     if db.readDB("user", str(user.id)) != None:
+    #         return
+    #     userInfomation = self.getDefaultData(user, 0)
+    #     # userInfomationをDBに書き込み
+    #     db.writeDB("user", str(user.id), userInfomation)
+    #     # 非同期で３秒待ってトークン付与
+    #     await self.giveToken(self.bot.user, user, settings["token"]["join"]["token"], settings["token"]["join"]["description"])
+    #     # await user.add_roles(user.guild.get_role(int(settings["role"]["listenOnly"])))
+    #     await interaction.response.send_message(f"{user.mention}さん、ようこそ！", ephemeral=True)
+
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
         try:

@@ -43,8 +43,9 @@ class smallroomCog(commands.Cog):
         results = await self.announce(17)
         if results is not None:
             for result in results:
-                if result[0] == "weekDayAfter":
-                    await self.archive_channel(result[1])
+                # if result[0] == "weekDayAfter":
+                #     await self.archive_channel(result[1])
+                pass
 
     @tasks.loop(time=endTimes)
     async def endTask(self):

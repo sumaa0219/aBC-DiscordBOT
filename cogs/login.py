@@ -76,8 +76,6 @@ class LoginView(discord.ui.View):  # UIキットを利用するためにdiscord.
                 loginMessage += settings["token"]["loginMonthly"]["description"] + "\n"
                 userInfo["login"]["monthly"] = today
                 loginMenu.append("loginMonthly")
-            weeklydelta = datetime.datetime.strptime(
-                today, '%Y:%m:%d') - datetime.datetime.strptime(userInfo["login"]["weekly"], '%Y:%m:%d')
 
         try:
             daydalta = datetime.datetime.strptime(
