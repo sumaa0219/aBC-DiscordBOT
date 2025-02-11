@@ -11,9 +11,12 @@ ENV TZ JST-9
 ENV TERM xterm
 
 RUN apt install -y git gcc libasound2-dev
+RUN git config --global --add safe.directory /abc-discord-bot
 
 RUN mkdir -p /abc-discord-bot
 COPY ./requirements.txt /abc-discord-bot
+COPY ./.env /abc-discord-bot
+COPY ./firebase-adminsdk.json /abc-discord-bot
 WORKDIR /abc-discord-bot
 
 RUN pip install --upgrade pip
