@@ -87,7 +87,12 @@
         }
     },
     "category": {
+        "interchange": "1271334991187542038",
         "descriptions": {
+            "interchange": {
+                "description": "交流関係行われるカテゴリのID",
+                "name": "交流関係のカテゴリID"
+            },
             "smallroom": {
                 "description": "小部屋が生成されるカテゴリのID",
                 "name": "小部屋カテゴリID"
@@ -97,6 +102,7 @@
     },
     "channel": {
         "welcome": "1270650390303473717",
+        "voiceChannelButton": "1340634982820876338",
         "announcement": "1308023153112649759",
         "token": "1298169269535637595",
         "invitation": "1310842201856675870",
@@ -108,6 +114,10 @@
         "forum": "1319037586257219766",
         "adminConsole": "1298147892485427260",
         "descriptions": {
+            "voiceChannelButton": {
+                "description": "ボイスチャンネル作成ボタンを表示するチャンネルのID",
+                "name": "ボイスチャンネル作成ボタンチャンネルID"
+            },
             "announcement": {
                 "description": "アナウンスを行うチャンネルのID",
                 "name": "アナウンスチャンネルID"
@@ -163,13 +173,13 @@
             "description": "トークンを指定したユーザーに送付します  :exclamation: **管理者専用**",
             "command": "tipwavesend"
         },
-        "showalltoken": {
-            "description": "全ユーザーのトークン残高を多い順に表示します  :exclamation: **管理者専用**",
-            "command": "showall"
-        },
         "send": {
             "description": "トークンをメンションしたユーザーに送付します",
             "command": "send"
+        },
+        "showalltoken": {
+            "description": "全ユーザーのトークン残高を多い順に表示します  :exclamation: **管理者専用**",
+            "command": "showall"
         },
         "show": {
             "description": "トークンの残高を表示します",
@@ -179,17 +189,21 @@
             "description": "ログインボーナスを受け取れます",
             "command": "login"
         },
-        "reload": {
-            "description": "コグをホットリロードします  :exclamation: **管理者専用**",
-            "command": "reload"
-        },
         "archive": {
             "description": "小部屋をアーカイブ化します  :exclamation: **運営専用**",
             "command": "archive"
         },
+        "reload": {
+            "description": "コグをホットリロードします  :exclamation: **管理者専用**",
+            "command": "reload"
+        },
         "help": {
             "description": "コマンド一覧を表示します",
             "command": "help"
+        },
+        "add": {
+            "description": "作成されたボイスチャンネルに参加できるメンバーを追加します",
+            "command": "add"
         },
         "descriptions": {
             "resistmail": {
@@ -200,6 +214,10 @@
                 "description": "メールアドレスへの転送の有無を切り替えるコマンドの名前と説明",
                 "name": "switchmailコマンド"
             },
+            "add": {
+                "description": "ボイスチャンネルに参加できるメンバーを追加するコマンドの名前と説明",
+                "name": "addコマンド"
+            },
             "archive": {
                 "description": "小部屋をアーカイブ化するコマンドの名前と説明",
                 "name": "archiveコマンド"
@@ -207,10 +225,6 @@
             "reload": {
                 "description": "コグをホットリロードするコマンドの名前と説明",
                 "name": "reloadコマンド"
-            },
-            "send": {
-                "description": "トークンをメンションしたユーザーに送付するコマンドの名前と説明",
-                "name": "sendコマンド"
             },
             "login": {
                 "description": "ログインボーナスを受け取れるコマンドの名前と説明",
@@ -220,17 +234,21 @@
                 "description": "トークンの残高を表示するコマンドの名前と説明",
                 "name": "showコマンド"
             },
-            "showalltoken": {
-                "description": "全ユーザーのトークン残高を多い順に表示するコマンドの名前と説明",
-                "name": "showallコマンド"
-            },
             "tipwavesend": {
                 "description": "トークンを指定したユーザーに送付するコマンドの名前と説明",
                 "name": "tipwavesendコマンド"
             },
+            "send": {
+                "description": "トークンをメンションしたユーザーに送付するコマンドの名前と説明",
+                "name": "sendコマンド"
+            },
             "help": {
                 "description": "コマンドの一覧を表示するコマンドの名前と説明",
                 "name": "helpコマンド"
+            },
+            "showalltoken": {
+                "description": "全ユーザーのトークン残高を多い順に表示するコマンドの名前と説明",
+                "name": "showallコマンド"
             },
             "adminsend": {
                 "description": "トークンを指定したユーザーに送付するコマンドの名前と説明",

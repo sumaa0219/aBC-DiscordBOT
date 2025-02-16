@@ -66,7 +66,6 @@ class cogManagerCog(commands.Cog):
                 await message.delete()
                 maxcuount += 1
                 time.sleep(0.1)
-        logger.info(f"{member.display_name}'s last {limit} messages deleted.")
         await interaction.followup.send(
             f"{member.display_name}'s last {limit} messages deleted."
         )
@@ -92,8 +91,8 @@ class cogManagerCog(commands.Cog):
         embed = discord.Embed(
             title="このBOTに登録されているコマンドを表示します", description="コマンド一覧", color=0x00ff00)
         for command in settings["commands"]:
-            if command == "description":
-                continue
+            if command == "descriptions":
+                pass
             else:
                 embed.add_field(name=settings["commands"][command]["command"],
                                 value=settings["commands"][command]["description"], inline=False)
