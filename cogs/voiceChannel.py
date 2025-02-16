@@ -78,6 +78,7 @@ class voiceChannelView(discord.ui.View):  # UIキットを利用するためにd
                 connect=True, view_channel=True)
         }
         channel = await guild.create_voice_channel(f"{member.name}のチャンネル", overwrites=overwrites, category=category)
+        await channel.send(f"{member.mention} がこのチャンネルを作成しました。\n``/add``を使用することで他のユーザーをこのボイスチャンネルに追加できます。")
         self.bot.get_cog("VoiceChannelCog").created_channels.append(
             channel.id)  # 作成されたチャンネルのIDをリストに追加
         await interaction.response.send_message(f"プライベートボイスチャンネルを作成しました: {channel.name}", ephemeral=True)
