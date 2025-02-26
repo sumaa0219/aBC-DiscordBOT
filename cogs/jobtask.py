@@ -45,7 +45,28 @@ class jobtaskCog(commands.Cog):
             self.announceTask.restart()
         else:
             self.announceTask.start()
+        if self.tokenCodeTask.is_running():
+            self.tokenCodeTask.restart()
+        else:
+            self.tokenCodeTask.start()
         print("Cog jobtask.py init!")
+        
+    @tasks.loop(minutes=5)
+    async def tokenCodeTask(self):
+        codes = db.readDB("codes")
+        for key in codes.keys():
+            code = codes[key]
+            useduser = code["useduser"]
+            applicableuser = code["applicableuser"]
+            if len(useduser) != len(applicableuser):
+                for userid in useduser:
+                    if userid not in applicableuser:
+                        applicableuser.append(userid)
+                        await token.tokenCog(self.bot).giveToken(self.bot.user, await self.bot.fetch_user(int(userid)), int(code["token"]), f"{str(code['token'])}トークンの特典コードを適用しました。")                      
+                code["applicableuser"] = applicableuser
+                db.writeDB("codes", key, code)
+            
+            
 
     @tasks.loop(minutes=1)
     async def announceTask(self):

@@ -105,10 +105,10 @@ class LoginView(discord.ui.View):  # UIキットを利用するためにdiscord.
             userInfo["login"]["day"] = today
             userInfo["login"]["total"] += 1
 
-        if userInfo["login"]["continuous"] % 7 == 0:
-            loginMessage += settings["token"]["loginWeekly"]["description"] + "\n"
-            userInfo["login"]["weekly"] = today
-            loginMenu.append("loginWeekly")
+            if userInfo["login"]["continuous"] % 7 == 0:
+                loginMessage += settings["token"]["loginWeekly"]["description"] + "\n"
+                userInfo["login"]["weekly"] = today
+                loginMenu.append("loginWeekly")
 
         for item in loginMenu:
             await token.tokenCog(self.bot).giveToken(self.bot.user, interaction.user, settings["token"][item]["token"], settings["token"][item]["description"])

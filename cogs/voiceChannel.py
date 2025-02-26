@@ -36,7 +36,7 @@ class VoiceChannelCog(commands.Cog):
 
         await channel.set_permissions(user, view_channel=True)
 
-        await interaction.response.send_message(f"指定されたユーザーにチャンネルの閲覧権限を付与しました。", ephemeral=True)
+        await interaction.response.send_message(f"{user.mention}にチャンネルの閲覧権限を付与しました。")
 
     @tasks.loop(minutes=3)
     async def check_empty_channels(self):
