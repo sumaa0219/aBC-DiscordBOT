@@ -96,17 +96,14 @@ class tokenCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
-        try:
-            Nan = db.readDB("user", str(member.id))
-
-        except:
-
-            userInfomation = self.getDefaultData(member, 0)
-            # userInfomationをDBに書き込み
-            db.writeDB("user", str(member.id), userInfomation)
-            # 非同期で３秒待ってトークン付与
-            await asyncio.sleep(3)
-            await self.giveToken(self.bot.user, member, settings["token"]["join"]["token"], settings["token"]["join"]["description"])
+        if db.readDB("user", str(member.id)) != None:
+            return
+        userInfomation = self.getDefaultData(member, 0)
+        # userInfomationをDBに書き込み
+        db.writeDB("user", str(member.id), userInfomation)
+        # 非同期で３秒待ってトークン付与
+        await asyncio.sleep(3)
+        await self.giveToken(self.bot.user, member, settings["token"]["join"]["token"], settings["token"]["join"]["description"])
         await member.add_roles(member.guild.get_role(int(settings["role"]["listenOnly"])))
         await self.bot.get_guild(int(settings["general"]["GuildID"])).get_channel(
             int(settings["channel"]["welcome"])).send(f"{member.mention}さん、ようこそ！")
